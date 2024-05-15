@@ -22,7 +22,7 @@ O sistema utiliza um modelo de banco de dados relacional. O modelo inclui três 
 
 ## Tecnologias Utilizadas
 
-[Linguagem de Backend: Node.js]
-[Linguagem de Frontend: HTML, CSS, JavaScript]
-[Framework de Frontend: React]
-[Sistema de Banco de Dados: PostgreSQL]
+- [Linguagem de Backend: Node.js]
+- [Linguagem de Frontend: HTML, CSS, JavaScript]
+- [Framework de Frontend: React]
+- [Sistema de Banco de Dados: PostgreSQL]
