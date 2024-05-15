@@ -20,18 +20,18 @@ app.get('/', (req, res) => {
 
 // Endpoints para usuários
 app.post('/register', async (req, res) => {
-  const { nome, email, senha, cpf, telefone } = req.body;
-  try {
-    const newUser = await pool.query(
-      'INSERT INTO usuario (nome, email, senha, cpf, telefone) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [nome, email, senha, cpf, telefone]
-    );
-    res.json(newUser.rows[0]);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-});
+    const { nome, email, senha, cpf, telefone } = req.body;
+    try {
+      const newUser = await pool.query(
+        'INSERT INTO usuario (nome, email, senha, cpf, telefone) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        [nome, email, senha, cpf, telefone]
+      );
+      res.json(newUser.rows[0]);  // Certifique-se de que a resposta é enviada corretamente
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  });
 
 app.post('/login', async (req, res) => {
   const { email, senha } = req.body;

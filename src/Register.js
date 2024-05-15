@@ -18,19 +18,54 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:5000/register', formData);
-      console.log(res.data);
+      console.log(res.data);  // Certifique-se de que a resposta contém 'data'
     } catch (err) {
-      console.error(err.response.data);
+      console.error(err.response ? err.response.data : err.message);
     }
   };
 
   return (
     <form onSubmit={onSubmit}>
-      <input type="text" name="nome" value={nome} onChange={onChange} placeholder="Nome" required />
-      <input type="email" name="email" value={email} onChange={onChange} placeholder="Email" required />
-      <input type="password" name="senha" value={senha} onChange={onChange} placeholder="Senha" required />
-      <input type="text" name="cpf" value={cpf} onChange={onChange} placeholder="CPF" required />
-      <input type="text" name="telefone" value={telefone} onChange={onChange} placeholder="Telefone" required />
+      <input
+        type="text"
+        name="nome"
+        value={nome}
+        onChange={onChange}
+        placeholder="Nome"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        value={email}
+        onChange={onChange}
+        placeholder="Email"
+        required
+      />
+      <input
+        type="password"
+        name="senha"
+        value={senha}
+        onChange={onChange}
+        placeholder="Senha"
+        required
+      />
+      <input
+        type="text"
+        name="cpf"
+        value={cpf}
+        onChange={onChange}
+        placeholder="CPF"
+        required
+      />
+      <input
+        type="text"
+        name="telefone"
+        value={telefone}
+        onChange={onChange}
+        placeholder="Telefone"
+        required
+      />
       <button type="submit">Register</button>
     </form>
   );
