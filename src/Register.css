@@ -6,6 +6,8 @@
   align-items: center;
   height: 100vh;
   font-family: 'Lilita One', cursive;
+  position: relative; /* Ensure container is positioned relative */
+  z-index: 2; /* Higher z-index to be on top of the stars */
 }
 
 .register-form {
@@ -21,6 +23,7 @@
   padding: 20px;
   box-sizing: border-box;
   box-shadow: 0px 6px 5.8px 0px rgba(0, 0, 0, 0.25);
+  z-index: 3; /* Higher z-index to be on top of the stars */
 }
 
 .register-title {

@@ -31,66 +31,65 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
+    <>
       <div className="stars">
         {[...Array(50)].map((_, i) => (
           <div key={i} className="star"></div>
         ))}
       </div>
-      <form onSubmit={onSubmit} className="register-form">
-        <div className="icon-container">
-          <i className="fas fa-user icon"></i>
-        </div>
-        <h2 className="register-title">CRIAR CONTA</h2>
-        <input
-          type="text"
-          name="nome"
-          value={nome}
-          onChange={onChange}
-          placeholder="Nome"
-          required
-          className="register-input"
-        />
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={onChange}
-          placeholder="Endereço de e-mail"
-          required
-          className="register-input"
-        />
-        <input
-          type="password"
-          name="senha"
-          value={senha}
-          onChange={onChange}
-          placeholder="Senha"
-          required
-          className="register-input"
-        />
-        <input
-          type="text"
-          name="cpf"
-          value={cpf}
-          onChange={onChange}
-          placeholder="CPF"
-          required
-          className="register-input"
-        />
-        <input
-          type="text"
-          name="telefone"
-          value={telefone}
-          onChange={onChange}
-          placeholder="Telefone"
-          required
-          className="register-input"
-        />
-        <button type="submit" className="register-button">Criar Conta</button>
-      </form>
-      {message && <p>{message}</p>}
-    </div>
+      <div className="register-container">
+        <form onSubmit={onSubmit} className="register-form">
+          <h2 className="register-title">CRIAR CONTA</h2>
+          <input
+            type="text"
+            name="nome"
+            value={nome}
+            onChange={onChange}
+            placeholder="Nome"
+            required
+            className="register-input"
+          />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+            placeholder="Endereço de e-mail"
+            required
+            className="register-input"
+          />
+          <input
+            type="password"
+            name="senha"
+            value={senha}
+            onChange={onChange}
+            placeholder="Senha"
+            required
+            className="register-input"
+          />
+          <input
+            type="text"
+            name="cpf"
+            value={cpf}
+            onChange={onChange}
+            placeholder="CPF"
+            required
+            className="register-input"
+          />
+          <input
+            type="text"
+            name="telefone"
+            value={telefone}
+            onChange={onChange}
+            placeholder="Telefone"
+            required
+            className="register-input"
+          />
+          <button type="submit" className="register-button">Criar Conta</button>
+        </form>
+        {message && <p>{message}</p>}
+      </div>
+    </>
   );
 };
 
