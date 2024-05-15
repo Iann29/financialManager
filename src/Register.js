@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Register.css';
 import './AnimatedBackground.css'; // Import the animated background CSS
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faUser } from '@fortawesome/free-solid-svg-icons'; // Import the faUser icon
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +25,7 @@ const Register = () => {
     try {
       const res = await axios.post('http://localhost:5000/register', formData);
       console.log(res.data);
-      setMessage('Registro concluído com sucesso');
+      setMessage('Registro concluído com sucesso!');
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);
       setMessage('Erro ao registrar. Verifique seus dados.');
@@ -38,6 +40,9 @@ const Register = () => {
         ))}
       </div>
       <div className="register-container">
+        <div className="icon-container">
+          <FontAwesomeIcon icon={faUser} className="icon" />
+        </div>
         <form onSubmit={onSubmit} className="register-form">
           <h2 className="register-title">CRIAR CONTA</h2>
           <input
@@ -86,8 +91,8 @@ const Register = () => {
             className="register-input"
           />
           <button type="submit" className="register-button">Criar Conta</button>
+          {message && <p className="success-message">{message}</p>}
         </form>
-        {message && <p>{message}</p>}
       </div>
     </>
   );
