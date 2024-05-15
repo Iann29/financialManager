@@ -7,6 +7,8 @@ const Login = () => {
     senha: ''
   });
 
+  const [message, setMessage] = useState('');
+
   const { email, senha } = formData;
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,32 +17,37 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:5000/login', formData);
-      console.log(res.data);  // Adicione mais ações aqui, como redirecionamento ou armazenamento de token
+      console.log(res.data);  // Certifique-se de que a resposta contém 'data'
+      setMessage('Login bem-sucedido');
     } catch (err) {
-      console.error(err.response.data);
+      console.error(err.response ? err.response.data : err.message);
+      setMessage('Erro ao fazer login. Verifique suas credenciais.');
     }
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="email"
-        name="email"
-        value={email}
-        onChange={onChange}
-        placeholder="Email"
-        required
-      />
-      <input
-        type="password"
-        name="senha"
-        value={senha}
-        onChange={onChange}
-        placeholder="Senha"
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <form onSubmit={onSubmit}>
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={onChange}
+          placeholder="Email"
+          required
+        />
+        <input
+          type="password"
+          name="senha"
+          value={senha}
+          onChange={onChange}
+          placeholder="Senha"
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+      {message && <p>{message}</p>}
+    </div>
   );
 };
 

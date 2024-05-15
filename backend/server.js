@@ -7,18 +7,18 @@ app.use(cors());
 app.use(express.json());
 
 const pool = new Pool({
-  user: 'root',
-  host: 'localhost',
-  database: 'financialManager',
-  password: 'root',
-  port: 5432,
-});
+    user: 'financial_user',
+    host: 'localhost',
+    database: 'financialManager',
+    password: 'admin123',
+    port: 5432,
+  });
 
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-// Endpoints para usuários
+// Endpoint de registro
 app.post('/register', async (req, res) => {
     const { nome, email, senha, cpf, telefone } = req.body;
     try {
@@ -26,13 +26,14 @@ app.post('/register', async (req, res) => {
         'INSERT INTO usuario (nome, email, senha, cpf, telefone) VALUES ($1, $2, $3, $4, $5) RETURNING *',
         [nome, email, senha, cpf, telefone]
       );
-      res.json(newUser.rows[0]);  // Certifique-se de que a resposta é enviada corretamente
+      res.json(newUser.rows[0]);
     } catch (err) {
-      console.error(err.message);
+      console.error('Erro no registro:', err.message);
       res.status(500).send('Server Error');
     }
   });
 
+// Endpoint de login
 app.post('/login', async (req, res) => {
   const { email, senha } = req.body;
   try {
