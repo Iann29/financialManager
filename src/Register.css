@@ -1,37 +1,54 @@
-/* Register.css */
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
 .register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(45deg, #1B1B25, #280F2F);
+  font-family: 'Lilita One', cursive;
+}
+
+.register-form {
   width: 466px;
   height: 603px;
-  background: #26273B;
+  flex-shrink: 0;
   border-radius: 34px;
-  display: flex; /* Use flexbox para alinhar o conteúdo */
+  background: #26273B;
+  display: flex;
   flex-direction: column;
-  align-items: center; /* Centralizar horizontalmente */
-  padding: 30px; /* Espaçamento interno */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0px 6px 5.8px 0px rgba(0, 0, 0, 0.25);
 }
 
-.register-container h2 {
-  color: white;
-  margin-bottom: 30px;
+.register-title {
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 
-/* Estilos para os inputs */
-.register-container input {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
+.register-input {
+  width: 75%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 20px;
   border: none;
-  /* ... outros estilos para os inputs */
+  outline: none;
 }
 
-/* Estilos para o botão */
-.register-container button {
-  padding: 15px 30px;
-  border: none;
-  border-radius: 10px;
-  background-color: #FF4500; /* Cor laranja */
-  color: white;
+.register-button {
+  width: 138px;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 21px;
+  border: solid;
+  border-color: #280F2F;
+  background: #ffffff00;
+  color: #ffffff;
   cursor: pointer;
-  /* ... outros estilos para o botão */
+  font-family: 'Lilita One', cursive;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }

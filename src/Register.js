@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Register.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const Register = () => {
     telefone: ''
   });
 
-  const [successMessage, setSuccessMessage] = useState('');
+  const [message, setMessage] = useState('');
 
   const { nome, email, senha, cpf, telefone } = formData;
 
@@ -20,16 +21,18 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:5000/register', formData);
-      console.log(res.data);  // Certifique-se de que a resposta contém 'data'
-      setSuccessMessage('Registro concluído com sucesso');
+      console.log(res.data);
+      setMessage('Registro concluído com sucesso');
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);
+      setMessage('Erro ao registrar. Verifique seus dados.');
     }
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className="register-container">
+      <form onSubmit={onSubmit} className="register-form">
+        <h2 className="register-title">CRIAR CONTA</h2>
         <input
           type="text"
           name="nome"
@@ -37,14 +40,16 @@ const Register = () => {
           onChange={onChange}
           placeholder="Nome"
           required
+          className="register-input"
         />
         <input
           type="email"
           name="email"
           value={email}
           onChange={onChange}
-          placeholder="Email"
+          placeholder="Endereço de e-mail"
           required
+          className="register-input"
         />
         <input
           type="password"
@@ -53,6 +58,7 @@ const Register = () => {
           onChange={onChange}
           placeholder="Senha"
           required
+          className="register-input"
         />
         <input
           type="text"
@@ -61,6 +67,7 @@ const Register = () => {
           onChange={onChange}
           placeholder="CPF"
           required
+          className="register-input"
         />
         <input
           type="text"
@@ -69,10 +76,11 @@ const Register = () => {
           onChange={onChange}
           placeholder="Telefone"
           required
+          className="register-input"
         />
-        <button type="submit">Register</button>
+        <button type="submit" className="register-button">Criar Conta</button>
       </form>
-      {successMessage && <p>{successMessage}</p>}
+      {message && <p>{message}</p>}
     </div>
   );
 };
