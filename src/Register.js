@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Register.css';
+import './AnimatedBackground.css'; // Import the animated background CSS
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -31,7 +32,15 @@ const Register = () => {
 
   return (
     <div className="register-container">
+      <div className="stars">
+        {[...Array(50)].map((_, i) => (
+          <div key={i} className="star"></div>
+        ))}
+      </div>
       <form onSubmit={onSubmit} className="register-form">
+        <div className="icon-container">
+          <i className="fas fa-user icon"></i>
+        </div>
         <h2 className="register-title">CRIAR CONTA</h2>
         <input
           type="text"
