@@ -4,6 +4,7 @@ import './Register.css';
 import './AnimatedBackground.css'; // Import the animated background CSS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
 import { faUser } from '@fortawesome/free-solid-svg-icons'; // Import the faUser icon
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const Register = () => {
   });
 
   const [message, setMessage] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const { nome, email, senha, cpf, telefone } = formData;
 
@@ -26,10 +28,19 @@ const Register = () => {
       const res = await axios.post('http://localhost:5000/register', formData);
       console.log(res.data);
       setMessage('Registro concluído com sucesso!');
+      
+      setTimeout(() => {
+        navigate('/login'); // Use navigate for redirection
+      }, 1000); // Espera 2 segundos antes de redirecionar
+
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);
       setMessage('Erro ao registrar. Verifique seus dados.');
     }
+  };
+
+  const handleLoginRedirect = () => {
+    navigate('/Login'); // Redirect to login page
   };
 
   return (
@@ -40,7 +51,7 @@ const Register = () => {
         ))}
       </div>
       <div className="register-container">
-        <div className="icon-container">
+        <div className="icon-container-register">
           <FontAwesomeIcon icon={faUser} className="icon" />
         </div>
         <form onSubmit={onSubmit} className="register-form">
@@ -91,6 +102,8 @@ const Register = () => {
             className="register-input"
           />
           <button type="submit" className="register-button">Criar Conta</button>
+          <h2 className="have-account">Ja tem uma conta?</h2>
+          <button onClick={handleLoginRedirect} className="have-account-button">Entrar</button>
           {message && <p className="success-message">{message}</p>}
         </form>
       </div>
