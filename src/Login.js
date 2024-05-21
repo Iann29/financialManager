@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
-import './AnimatedBackground.css'; // Import the animated background CSS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
@@ -35,11 +34,6 @@ const Login = () => {
 
   return (
     <>
-      <div className="stars">
-        {[...Array(50)].map((_, i) => (
-          <div key={i} className="star"></div>
-        ))}
-      </div>
       <div className="login-container">
         <div className="icon-container-login">
           <FontAwesomeIcon icon={faUser} className="icon" />

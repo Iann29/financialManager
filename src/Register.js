@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Register.css';
-import './AnimatedBackground.css'; // Import the animated background CSS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
 import { faUser } from '@fortawesome/free-solid-svg-icons'; // Import the faUser icon
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
@@ -45,11 +44,6 @@ const Register = () => {
 
   return (
     <>
-      <div className="stars">
-        {[...Array(50)].map((_, i) => (
-          <div key={i} className="star"></div>
-        ))}
-      </div>
       <div className="register-container">
         <div className="icon-container-register">
           <FontAwesomeIcon icon={faUser} className="icon" />
