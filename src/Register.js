@@ -4,6 +4,7 @@ import './Register.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import { faUser } from '@fortawesome/free-solid-svg-icons'; 
 import { useNavigate } from 'react-router-dom';
+import HTMLWrapper from './HTMLWrapper';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const Register = () => {
   };
 
   return (
-    <>
+    <HTMLWrapper>
       <div className="illumination top-left"></div>
       <div className="illumination bottom-right"></div>
       <div className="page-container">
@@ -121,7 +122,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-    </>
+    </HTMLWrapper>
   );
 };
 
