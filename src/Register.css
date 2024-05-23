@@ -11,22 +11,77 @@ body {
 
 .illumination {
   position: absolute;
-  width: 225.773px;
-  height: 167.743px;
+  width: 15.6vw; /* Aproximadamente 225.773px em uma tela de 1440px */
+  height: 16.4vh; /* Aproximadamente 167.743px em uma tela de 1024px */
   flex-shrink: 0;
   background-color: #FA06FF; /* Usar background-color em vez de fill */
-  filter: blur(165.35px);
+  filter: blur(11.5vw); /* Ajusta o desfoque proporcionalmente */
   z-index: 0;
 }
 
 .top-left {
-  top: -50px; /* Ajustar a posição para garantir que a iluminação apareça */
-  left: -50px;
+  top: calc(-3.47vh); /* Aproximadamente -50px em uma tela de 1440px */
+  left: calc(-3.47vh); /* Aproximadamente -50px em uma tela de 1440px */
 }
 
 .bottom-right {
-  bottom: -50px; /* Ajustar a posição para garantir que a iluminação apareça */
-  right: -50px;
+  bottom: calc(-3.47vh); /* Aproximadamente -50px em uma tela de 1440px */
+  right: calc(-3.47vh); /* Aproximadamente -50px em uma tela de 1440px */
+}
+
+/* Media queries para ajustar os estilos em diferentes tamanhos de tela */
+@media (max-width: 1024px) {
+  .illumination {
+    width: 20vw; /* Ajusta a largura para telas menores */
+    height: 17vh; /* Ajusta a altura para telas menores */
+    filter: blur(13vw); /* Ajusta o desfoque proporcionalmente */
+  }
+
+  .top-left {
+    top: calc(-4vh); /* Ajusta a posição superior para telas menores */
+    left: calc(-4vh); /* Ajusta a posição esquerda para telas menores */
+  }
+
+  .bottom-right {
+    bottom: calc(-4vh); /* Ajusta a posição inferior para telas menores */
+    right: calc(-4vh); /* Ajusta a posição direita para telas menores */
+  }
+}
+
+@media (max-width: 768px) {
+  .illumination {
+    width: 25vw; /* Ajusta a largura para telas menores */
+    height: 20vh; /* Ajusta a altura para telas menores */
+    filter: blur(16vw); /* Ajusta o desfoque proporcionalmente */
+  }
+
+  .top-left {
+    top: calc(-5vh); /* Ajusta a posição superior para telas menores */
+    left: calc(-5vh); /* Ajusta a posição esquerda para telas menores */
+  }
+
+  .bottom-right {
+    bottom: calc(-5vh); /* Ajusta a posição inferior para telas menores */
+    right: calc(-5vh); /* Ajusta a posição direita para telas menores */
+  }
+}
+
+@media (max-width: 480px) {
+  .illumination {
+    width: 30vw; /* Ajusta a largura para telas menores */
+    height: 25vh; /* Ajusta a altura para telas menores */
+    filter: blur(18vw); /* Ajusta o desfoque proporcionalmente */
+  }
+
+  .top-left {
+    top: calc(-6vh); /* Ajusta a posição superior para telas menores */
+    left: calc(-6vh); /* Ajusta a posição esquerda para telas menores */
+  }
+
+  .bottom-right {
+    bottom: calc(-6vh); /* Ajusta a posição inferior para telas menores */
+    right: calc(-6vh); /* Ajusta a posição direita para telas menores */
+  }
 }
 
 .register-container {
