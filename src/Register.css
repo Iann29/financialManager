@@ -46,18 +46,46 @@ body {
 }
 
 .register-title {
-  width: 216px;
-  height: 33px;
+  width: 15vw; /* Aproximadamente 216px em uma tela de 1440px */
+  height: auto; /* Altura automática para se ajustar ao conteúdo */
   flex-shrink: 0;
   color: #FFF;
   text-align: center;
   font-family: "Lilita One";
-  font-size: 25px;
+  font-size: 1.74vw; /* Aproximadamente 25px em uma tela de 1440px */
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 190px; 
-  margin-top: 10px; 
+  margin-bottom: 13.2vh; /* Aproximadamente 190px em uma tela de 1440px */
+  margin-top: -11vh; /* Aproximadamente 10px em uma tela de 1440px */
+}
+
+/* Media queries para ajustar os estilos em diferentes tamanhos de tela */
+@media (max-width: 1024px) {
+  .register-title {
+    width: 20vw; /* Ajusta a largura para telas menores */
+    font-size: 2vw; /* Ajusta o tamanho da fonte para telas menores */
+    margin-bottom: 15vh; /* Ajusta a margem inferior para telas menores */
+    margin-top: 1vh; /* Ajusta a margem superior para telas menores */
+  }
+}
+
+@media (max-width: 768px) {
+  .register-title {
+    width: 25vw; /* Ajusta a largura para telas menores */
+    font-size: 2.5vw; /* Ajusta o tamanho da fonte para telas menores */
+    margin-bottom: 10vh; /* Ajusta a margem inferior para telas menores */
+    margin-top: 2vh; /* Ajusta a margem superior para telas menores */
+  }
+}
+
+@media (max-width: 480px) {
+  .register-title {
+    width: 40vw; /* Ajusta a largura para telas menores */
+    font-size: 3vw; /* Ajusta o tamanho da fonte para telas menores */
+    margin-bottom: 8vh; /* Ajusta a margem inferior para telas menores */
+    margin-top: 2vh; /* Ajusta a margem superior para telas menores */
+  }
 }
 
 .page-container {
