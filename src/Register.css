@@ -5,8 +5,8 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #1B1B25;
-    overflow: hidden;
-    position: relative;
+    overflow: hidden; /* Adicionado para remover a rolagem */
+    position: relative; /* Adicionado para permitir o posicionamento relativo das iluminações */
   }
   
   .illumination {
@@ -14,18 +14,18 @@ body {
     width: 225.773px;
     height: 167.743px;
     flex-shrink: 0;
-    background-color: #FA06FF;
+    background-color: #FA06FF; /* Usar background-color em vez de fill */
     filter: blur(165.35px);
     z-index: 0;
   }
   
   .top-left {
-    top: -50px;
+    top: -50px; /* Ajustar a posição para garantir que a iluminação apareça */
     left: -50px;
   }
   
   .bottom-right {
-    bottom: -50px;
+    bottom: -50px; /* Ajustar a posição para garantir que a iluminação apareça */
     right: -50px;
   }
   
@@ -41,10 +41,10 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    position: relative;
+    position: relative; 
     z-index: 1;
   }
-  
+
   .register-title {
     width: 216px;
     height: 33px;
@@ -56,19 +56,19 @@ body {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-bottom: 190px;
-    margin-top: -10px;
+    margin-bottom: 190px; 
+    margin-top: -10px; 
   }
-  
+
   .page-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
     position: relative;
     width: 100%;
   }
-  
+
   .icon-container {
     width: 60px;
     height: 60px;
@@ -76,9 +76,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
-    margin-bottom: 30px;
-    margin-top: -60px;
+    z-index: 2; /* Certifique-se de que o ícone esteja acima do fundo */
+    margin-bottom: 30px; /* Ajusta a posição do ícone em relação ao container */
+    margin-top: -60px; /* Ajusta a posição do ícone em relação ao topo */
   }
   
   .icon-container svg {
@@ -88,119 +88,7 @@ body {
   .icon {
     position: absolute;
     color: #FFF;
-    font-size: 30px;
+    font-size: 30px; 
   }
+
   
-  .register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-    width: 100%;
-  }
-  
-  .register-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  
-  .register-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 10px;
-  }
-  
-  .register-button:hover {
-    background-color: #45a049;
-  }
-  
-  .success-message {
-    text-align: center;
-    margin-top: 15px;
-    color: #4caf50;
-    font-size: 1rem;
-  }
-  
-  .have-account {
-    text-align: center;
-    margin-top: 20px;
-    color: #555;
-  }
-  
-  .have-account-button {
-    background: none;
-    border: none;
-    color: #4caf50;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .have-account-button:hover {
-    text-decoration: underline;
-  }
-  
-  /* Media Queries for Responsiveness */
-  @media (max-width: 1024px) {
-    .register-container {
-      width: 80%;
-      height: auto;
-      padding: 20px;
-    }
-  
-    .register-title {
-      margin-bottom: 20px;
-    }
-  
-    .icon-container {
-      margin-top: -30px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .register-container {
-      width: 90%;
-      height: auto;
-      padding: 20px;
-    }
-  
-    .register-title {
-      margin-bottom: 20px;
-      font-size: 20px;
-    }
-  
-    .icon-container {
-      margin-top: -20px;
-      width: 50px;
-      height: 50px;
-    }
-  
-    .icon {
-      font-size: 25px;
-    }
-  
-    .input-group {
-      margin-bottom: 10px;
-    }
-  
-    .register-input {
-      font-size: 0.9rem;
-      padding: 8px;
-    }
-  
-    .register-button {
-      padding: 8px;
-      font-size: 0.9rem;
-    }
-  }
