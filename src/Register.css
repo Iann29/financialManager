@@ -5,149 +5,63 @@ body {
   height: 100vh;
   margin: 0;
   background-color: #1B1B25;
-  overflow: hidden; /* Adicionado para remover a rolagem */
-  position: relative; /* Adicionado para permitir o posicionamento relativo das iluminações */
+  overflow: hidden;
+  position: relative;
 }
 
 .illumination {
   position: absolute;
-  width: 15.6vw; /* Aproximadamente 225.773px em uma tela de 1440px */
-  height: 16.4vh; /* Aproximadamente 167.743px em uma tela de 1024px */
-  flex-shrink: 0;
-  background-color: #FA06FF; /* Usar background-color em vez de fill */
-  filter: blur(11.5vw); /* Ajusta o desfoque proporcionalmente */
+  width: 225.773px; /* Valor exato do Figma */
+  height: 167.743px; /* Valor exato do Figma */
+  background-color: #FA06FF;
+  filter: blur(115px); /* Valor exato do Figma */
   z-index: 0;
 }
 
 .top-left {
-  top: calc(-3.47vh); /* Aproximadamente -50px em uma tela de 1440px */
-  left: calc(-3.47vh); /* Aproximadamente -50px em uma tela de 1440px */
+  top: -50px; /* Valor exato do Figma */
+  left: -50px; /* Valor exato do Figma */
 }
 
 .bottom-right {
-  bottom: calc(-3.47vh); /* Aproximadamente -50px em uma tela de 1440px */
-  right: calc(-3.47vh); /* Aproximadamente -50px em uma tela de 1440px */
-}
-
-/* Media queries para ajustar os estilos em diferentes tamanhos de tela */
-@media (max-width: 1024px) {
-  .illumination {
-    width: 20vw; /* Ajusta a largura para telas menores */
-    height: 17vh; /* Ajusta a altura para telas menores */
-    filter: blur(13vw); /* Ajusta o desfoque proporcionalmente */
-  }
-
-  .top-left {
-    top: calc(-4vh); /* Ajusta a posição superior para telas menores */
-    left: calc(-4vh); /* Ajusta a posição esquerda para telas menores */
-  }
-
-  .bottom-right {
-    bottom: calc(-4vh); /* Ajusta a posição inferior para telas menores */
-    right: calc(-4vh); /* Ajusta a posição direita para telas menores */
-  }
-}
-
-@media (max-width: 768px) {
-  .illumination {
-    width: 25vw; /* Ajusta a largura para telas menores */
-    height: 20vh; /* Ajusta a altura para telas menores */
-    filter: blur(16vw); /* Ajusta o desfoque proporcionalmente */
-  }
-
-  .top-left {
-    top: calc(-5vh); /* Ajusta a posição superior para telas menores */
-    left: calc(-5vh); /* Ajusta a posição esquerda para telas menores */
-  }
-
-  .bottom-right {
-    bottom: calc(-5vh); /* Ajusta a posição inferior para telas menores */
-    right: calc(-5vh); /* Ajusta a posição direita para telas menores */
-  }
-}
-
-@media (max-width: 480px) {
-  .illumination {
-    width: 30vw; /* Ajusta a largura para telas menores */
-    height: 25vh; /* Ajusta a altura para telas menores */
-    filter: blur(18vw); /* Ajusta o desfoque proporcionalmente */
-  }
-
-  .top-left {
-    top: calc(-6vh); /* Ajusta a posição superior para telas menores */
-    left: calc(-6vh); /* Ajusta a posição esquerda para telas menores */
-  }
-
-  .bottom-right {
-    bottom: calc(-6vh); /* Ajusta a posição inferior para telas menores */
-    right: calc(-6vh); /* Ajusta a posição direita para telas menores */
-  }
+  bottom: -50px; /* Valor exato do Figma */
+  right: -50px; /* Valor exato do Figma */
 }
 
 .register-container {
-  width: 30vw; /* Aproximadamente 569.818px em uma tela de 1440px */
-  height: 54.72vh; /* Aproximadamente 559.397px em uma tela de 1024px */
-  flex-shrink: 0;
+  width: 569.818px; /* Valor exato do Figma */
+  height: 559.397px; /* Valor exato do Figma */
   border-radius: 34px;
   border: 1px solid #26273B;
   background: linear-gradient(111deg, rgba(38, 39, 59, 0.29) 0%, rgba(104, 106, 161, 0.16) 100%);
-  box-shadow: 0px 6px 5.8px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 6px 5.8px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  position: relative; 
+  position: relative;
   z-index: 1;
 }
 
 .register-title {
-  width: 15vw; /* Aproximadamente 216px em uma tela de 1440px */
-  height: auto; /* Altura automática para se ajustar ao conteúdo */
-  flex-shrink: 0;
+  width: 216px;
+  height: 33px;
   color: #FFF;
+  flex-shrink: 0;
   text-align: center;
   font-family: "Lilita One";
-  font-size: 1.74vw; /* Aproximadamente 25px em uma tela de 1440px */
+  font-size: 30px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 13.2vh; /* Aproximadamente 190px em uma tela de 1440px */
-  margin-top: -11vh; /* Aproximadamente 10px em uma tela de 1440px */
-}
-
-/* Media queries para ajustar os estilos em diferentes tamanhos de tela */
-@media (max-width: 1024px) {
-  .register-title {
-    width: 20vw; /* Ajusta a largura para telas menores */
-    font-size: 2vw; /* Ajusta o tamanho da fonte para telas menores */
-    margin-bottom: 15vh; /* Ajusta a margem inferior para telas menores */
-    margin-top: 1vh; /* Ajusta a margem superior para telas menores */
-  }
-}
-
-@media (max-width: 768px) {
-  .register-title {
-    width: 25vw; /* Ajusta a largura para telas menores */
-    font-size: 2.5vw; /* Ajusta o tamanho da fonte para telas menores */
-    margin-bottom: 10vh; /* Ajusta a margem inferior para telas menores */
-    margin-top: 2vh; /* Ajusta a margem superior para telas menores */
-  }
-}
-
-@media (max-width: 480px) {
-  .register-title {
-    width: 40vw; /* Ajusta a largura para telas menores */
-    font-size: 3vw; /* Ajusta o tamanho da fonte para telas menores */
-    margin-bottom: 8vh; /* Ajusta a margem inferior para telas menores */
-    margin-top: 2vh; /* Ajusta a margem superior para telas menores */
-  }
+  margin-top: -50px; /* Mover 50 pixels para cima */
 }
 
 .page-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza horizontalmente */
-  justify-content: center; /* Centraliza verticalmente */
+  align-items: center;
+  justify-content: center;
   position: relative;
   width: 100%;
 }
@@ -155,21 +69,114 @@ body {
 .icon-container {
   width: 60px;
   height: 60px;
-  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2; /* Certifique-se de que o ícone esteja acima do fundo */
-  margin-bottom: 30px; /* Ajusta a posição do ícone em relação ao container */
-  margin-top: -60px; /* Ajusta a posição do ícone em relação ao topo */
+  z-index: 2;
+  margin-bottom: 30px;
+  margin-top: -60px;
 }
 
-.icon-container svg {
-  position: absolute;
-}
-
-.icon {
+.icon-container svg, .icon {
   position: absolute;
   color: #FFF;
-  font-size: 30px; 
+  font-size: 30px;
+}
+
+.register-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-group {
+  position: relative;
+  width: 419.046px; /* Valor exato do Figma */
+  height: 52px; /* Valor exato do Figma */
+  margin-bottom: 16px; /* Espaçamento entre inputs */
+}
+
+.register-input {
+  width: 100%;
+  height: 100%;
+  padding-left: 50px; /* Espaço para o ícone */
+  border-radius: 15px;
+  border: 0.5px solid rgba(255, 255, 255, 0.30);
+  background: #1B1B25;
+  color: #666;
+  font-family: "Source Serif Pro";
+  font-size: 20px;
+  line-height: normal;
+  text-align: left; /* Ajusta o alinhamento do texto */
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px; /* Posição do ícone dentro do input */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 23.109px; /* Valor exato do Figma */
+  height: 25.161px; /* Valor exato do Figma */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Especifique os ícones para cada input */
+.input-icon.nome {
+  background-image: url('./icon/customer_ico.png');
+}
+
+.input-icon.email {
+  background-image: url('./icon/email_ico.png');
+}
+
+.input-icon.senha {
+  background-image: url('./icon/lock_ico.png');
+}
+
+.input-icon.cpf {
+  background-image: url('./icon/document_ico.png');
+}
+
+.input-icon.telefone {
+  background-image: url('./icon/phone_ico.png');
+}
+
+.register-button {
+  width: 100%;
+  height: 52px;
+  border-radius: 15px;
+  border: 0.5px solid rgba(255, 255, 255, 0.30);
+  background: #26273B;
+  color: #FFF;
+  font-family: "Source Serif Pro";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.success-message {
+  color: #0f0;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.have-account {
+  margin-top: 20px;
+  color: #FFF;
+  font-family: "Source Serif Pro";
+  font-size: 16px;
+}
+
+.have-account-button {
+  background: none;
+  border: none;
+  color: #FFF;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: "Source Serif Pro";
+  font-size: 16px;
 }
