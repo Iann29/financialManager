@@ -58,7 +58,7 @@ const Register = () => {
           <div className="background-rectangle">
             <form onSubmit={onSubmit} className="register-form">
               <h2 className="register-title">CRIAR CONTA</h2>
-              <div className="input-group">
+              <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
                 <span className="input-icon nome"></span>
                 <input
                   type="text"
@@ -70,7 +70,7 @@ const Register = () => {
                   className="register-input"
                 />
               </div>
-              <div className="input-group">
+              <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
                 <span className="input-icon email"></span>
                 <input
                   type="email"
@@ -82,7 +82,7 @@ const Register = () => {
                   className="register-input"
                 />
               </div>
-              <div className="input-group">
+              <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
                 <span className="input-icon senha"></span>
                 <input
                   type="password"
@@ -94,7 +94,7 @@ const Register = () => {
                   className="register-input"
                 />
               </div>
-              <div className="input-group">
+              <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
                 <span className="input-icon cpf"></span>
                 <input
                   type="text"
@@ -106,7 +106,7 @@ const Register = () => {
                   className="register-input"
                 />
               </div>
-              <div className="input-group">
+              <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
                 <span className="input-icon telefone"></span>
                 <input
                   type="text"
