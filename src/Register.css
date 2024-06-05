@@ -54,7 +54,7 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: -50px; /* Mover 50 pixels para cima */
+  margin-top: -20px; /* Mover 50 pixels para cima */
 }
 
 .page-container {
@@ -169,11 +169,18 @@ body {
   margin-top: 20px; /* Ajuste conforme necessário para espaçamento */
 }
 
-
 .success-message {
-  color: #0f0;
-  margin-top: 10px;
+  width: 249px;
+  height: 16px;
+  flex-shrink: 0;
+  color: #00FF38;
   text-align: center;
+  font-family: "Sulphur Point";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 20px; /* Ajuste conforme necessário para espaçamento */
 }
 
 .have-account {
@@ -199,4 +206,3 @@ body {
   cursor: pointer;
   text-decoration: underline;
 }
-

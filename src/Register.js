@@ -119,13 +119,13 @@ const Register = () => {
                 />
               </div>
               <button type="submit" className="register-button">Criar conta</button>
-              {message && <p className="success-message">{message}</p>}
             </form>
             <div className="have-account">
               Já possui uma conta? <button onClick={handleLoginRedirect} className="have-account-button">Entrar</button>
             </div>
           </div>
         </div>
+        {message && <p className="success-message">{message}</p>}
       </div>
     </HTMLWrapper>
   );

@@ -72,10 +72,9 @@
 
 .success-message {
   color: #4CAF50; /* Verde para indicar sucesso */
-  background-color: #DFF2BF; /* Fundo suave para a mensagem */
   padding: 10px;
   border-radius: 5px;
   margin-top: 15px;
-  font-size: 10px;
+  font-size: 25px;
   text-align: center;
 }
