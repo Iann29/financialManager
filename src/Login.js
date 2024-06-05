@@ -4,6 +4,7 @@ import './Login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const Login = () => {
 
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();  // Usar contexto de autenticação
 
   const { email, senha } = formData;
 
@@ -24,8 +26,8 @@ const Login = () => {
       const res = await axios.post('http://localhost:5000/login', formData);
       console.log(res.data);
       setMessage('Login bem-sucedido');
-      // Redirecionar para outra página, como o dashboard, por exemplo
-      navigate('/dashboard');
+      login();  // Atualizar o estado de autenticação
+      navigate('/dashboard');  // Redirecionar para o dashboard
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);
       setMessage('Erro ao fazer login. Verifique seus dados.');
@@ -60,7 +62,7 @@ const Login = () => {
           />
           <button type="submit" className="login-button">Entrar</button>
         </form>
-        {message && <p className="success-message">{message}</p>}
+        {message && <p className={`message ${message === 'Login bem-sucedido' ? 'success-message' : 'error-message'}`}>{message}</p>}
       </div>
     </>
   );
