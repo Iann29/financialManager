@@ -11,26 +11,26 @@ body {
 
 .illumination {
   position: absolute;
-  width: 225.773px; /* Valor exato do Figma */
-  height: 167.743px; /* Valor exato do Figma */
+  width: 225.773px; 
+  height: 167.743px; 
   background-color: #FA06FF;
-  filter: blur(115px); /* Valor exato do Figma */
+  filter: blur(115px); 
   z-index: 0;
 }
 
 .top-left {
-  top: -50px; /* Valor exato do Figma */
-  left: -50px; /* Valor exato do Figma */
+  top: -50px; 
+  left: -50px; 
 }
 
 .bottom-right {
-  bottom: -50px; /* Valor exato do Figma */
-  right: -50px; /* Valor exato do Figma */
+  bottom: -50px; 
+  right: -50px; 
 }
 
 .register-container {
-  width: 569.818px; /* Valor exato do Figma */
-  height: 559.397px; /* Valor exato do Figma */
+  width: 569.818px; 
+  height: 559.397px; 
   border-radius: 34px;
   border: 1px solid #26273B;
   background: linear-gradient(111deg, rgba(38, 39, 59, 0.29) 0%, rgba(104, 106, 161, 0.16) 100%);
@@ -54,7 +54,7 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: -20px; /* Mover 50 pixels para cima */
+  margin-top: -20px; 
 }
 
 .page-container {
@@ -90,22 +90,21 @@ body {
   align-items: center;
 }
 
-/* Variáveis para ajustar o x e y */
 .input-group {
   --x: 0px;
   --y: 0px;
 
   position: relative;
-  width: 419.046px; /* Valor exato do Figma */
-  height: 52px; /* Valor exato do Figma */
-  margin-bottom: 16px; /* Espaçamento entre inputs */
+  width: 419.046px; 
+  height: 52px; 
+  margin-bottom: 16px; 
   transform: translate(var(--x), var(--y));
 }
 
 .register-input {
   width: 100%;
   height: 100%;
-  padding-left: 50px; /* Espaço para o ícone */
+  padding-left: 50px; 
   border-radius: 15px;
   border: 0.5px solid rgba(255, 255, 255, 0.30);
   background: #1B1B25;
@@ -113,21 +112,20 @@ body {
   font-family: "Source Serif Pro";
   font-size: 20px;
   line-height: normal;
-  text-align: left; /* Ajusta o alinhamento do texto */
+  text-align: left; 
 }
 
 .input-icon {
   position: absolute;
-  left: 15px; /* Posição do ícone dentro do input */
+  left: 15px; 
   top: 50%;
   transform: translateY(-50%);
-  width: 23.109px; /* Valor exato do Figma */
-  height: 25.161px; /* Valor exato do Figma */
+  width: 23.109px; 
+  height: 25.161px;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
-/* Especifique os ícones para cada input */
 .input-icon.nome {
   background-image: url('./icon/customer_ico.png');
 }
@@ -149,8 +147,8 @@ body {
 }
 
 .register-button {
-  width: 354.098px; /* Valor exato do Figma */
-  height: 54.656px; /* Valor exato do Figma */
+  width: 354.098px; 
+  height: 54.656px; 
   flex-shrink: 0;
   border-radius: 15px;
   border: 0.5px solid rgba(255, 255, 255, 0.30);
@@ -166,7 +164,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px; /* Ajuste conforme necessário para espaçamento */
+  margin-top: 20px; 
 }
 
 .success-message {
@@ -180,7 +178,7 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 20px; /* Ajuste conforme necessário para espaçamento */
+  margin-top: 20px; 
 }
 
 .have-account {
