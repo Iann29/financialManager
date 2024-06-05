@@ -8,7 +8,7 @@ app.use(express.json());
 
 const pool = new Pool({
     user: 'financial_user',
-    host: '192.168.18.244', // IP do notebook
+    host: 'localhost',
     database: 'financialManager',
     password: 'admin123',
     port: 5432,
@@ -26,7 +26,6 @@ app.get('/', (req, res) => {
     res.send('API is running...');
 });
 
-// Endpoint de registro
 app.post('/register', async (req, res) => {
     const { nome, email, senha, cpf, telefone } = req.body;
     try {
@@ -43,7 +42,6 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// Endpoint de login
 app.post('/login', async (req, res) => {
     const { email, senha } = req.body;
     try {
