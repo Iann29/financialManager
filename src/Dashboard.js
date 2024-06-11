@@ -6,6 +6,8 @@ import TransactionList from './TransactionList';
 import PieChartComponent from './PieChartComponent';
 import { useAuth } from './AuthContext';
 import Modal from './Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -116,7 +118,12 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <h1>Dashboard</h1>
-      <button onClick={() => setShowModal(true)} className="add-button">+</button>
+      <button onClick={() => setShowModal(true)} className="add-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="111" height="112" viewBox="0  111 112" fill="none">
+          <circle cx="55.5694" cy="55.9517" r="55.4297" fill="#FFA800" />
+        </svg>
+        <FontAwesomeIcon icon={faPlus} className="add-icon-mais" />
+      </button>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         <AddCategory onAdd={handleAddCategory} userId={user.id} />
         <AddTransaction onAdd={handleAddTransaction} categorias={categorias} userId={user.id} />
