@@ -197,6 +197,22 @@ app.delete('/lancamentos/:id', async (req, res) => {
     }
 });
 
+// Rota para calcular o saldo mensal
+app.get('/saldo-mensal/:user_id/:mes/:ano', async (req, res) => {
+    const { user_id, mes, ano } = req.params;
+    try {
+        const result = await pool.query(
+            'SELECT tipo, SUM(valor) as total FROM lancamento WHERE usuario_id = $1 AND EXTRACT(MONTH FROM data) = $2 AND EXTRACT(YEAR FROM data) = $3 GROUP BY tipo',
+            [user_id, mes, ano]
+        );
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Erro ao calcular saldo mensal:', err.message);
+        res.status(500).send('Erro no servidor');
+    }
+});
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);

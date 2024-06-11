@@ -1,0 +1,15 @@
+.chart-container {
+    position: relative;
+    width: 300px; 
+    height: 300px; 
+    border-radius: 50%; 
+    background: #fff; /* Removendo a cor de fundo para o gráfico */
+    margin: 0 auto; 
+    cursor: pointer;
+  }
+  
+  .chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  

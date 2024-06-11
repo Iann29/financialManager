@@ -1,45 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import AddCategory from './AddCategory';
 import CategoryList from './CategoryList';
 import AddTransaction from './AddTransaction';
 import TransactionList from './TransactionList';
-import PieChartComponent from './PieChartComponent'; // Importando o componente do gráfico
+import PieChartComponent from './PieChartComponent';
 import { useAuth } from './AuthContext';
 import Modal from './Modal';
-import './Dashboard.css'; // Importando o arquivo CSS
+import './Dashboard.css';
 
 const Dashboard = () => {
   const [categorias, setCategorias] = useState([]);
   const [transacoes, setTransacoes] = useState([]);
+  const [saldoMensal, setSaldoMensal] = useState({ receita: 0, despesa: 0 });
   const [showModal, setShowModal] = useState(false);
   const { user } = useAuth();
 
+  const fetchCategorias = useCallback(async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/categorias/${user.id}`);
+      const result = await response.json();
+      setCategorias(result);
+    } catch (err) {
+      console.error('Erro ao buscar categorias:', err);
+    }
+  }, [user.id]);
+
+  const fetchTransacoes = useCallback(async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/lancamentos/${user.id}`);
+      const result = await response.json();
+      setTransacoes(result);
+    } catch (err) {
+      console.error('Erro ao buscar transações:', err);
+    }
+  }, [user.id]);
+
+  const fetchSaldoMensal = useCallback(async () => {
+    const mes = new Date().getMonth() + 1;
+    const ano = new Date().getFullYear();
+    try {
+      const response = await fetch(`http://localhost:5000/saldo-mensal/${user.id}/${mes}/${ano}`);
+      if (!response.ok) throw new Error('Network response was not ok');
+      const result = await response.json();
+      let receita = 0, despesa = 0;
+      result.forEach(item => {
+        if (item.tipo === 'Receita') receita = parseFloat(item.total);
+        else if (item.tipo === 'Despesa') despesa = parseFloat(item.total);
+      });
+      setSaldoMensal({ receita, despesa });
+    } catch (err) {
+      console.error('Erro ao buscar saldo mensal:', err.message);
+    }
+  }, [user.id]);
+
   useEffect(() => {
-    const fetchCategorias = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/categorias/${user.id}`);
-        const result = await response.json();
-        setCategorias(result);
-      } catch (err) {
-        console.error('Erro ao buscar categorias:', err);
-      }
-    };
-
-    const fetchTransacoes = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/lancamentos/${user.id}`);
-        const result = await response.json();
-        setTransacoes(result);
-      } catch (err) {
-        console.error('Erro ao buscar transações:', err);
-      }
-    };
-
     if (user.id) {
       fetchCategorias();
       fetchTransacoes();
+      fetchSaldoMensal();
     }
-  }, [user.id]);
+  }, [user.id, fetchCategorias, fetchTransacoes, fetchSaldoMensal]);
 
   const handleAddCategory = (novaCategoria) => {
     setCategorias([...categorias, novaCategoria]);
@@ -51,6 +71,7 @@ const Dashboard = () => {
 
   const handleAddTransaction = (novaTransacao) => {
     setTransacoes([novaTransacao, ...transacoes]);
+    fetchSaldoMensal();
   };
 
   const handleRemoveTransaction = async (id) => {
@@ -60,6 +81,7 @@ const Dashboard = () => {
       });
       if (response.ok) {
         setTransacoes(transacoes.filter((transacao) => transacao.id !== id));
+        fetchSaldoMensal();
       } else {
         alert('Erro ao excluir a transação');
       }
@@ -94,13 +116,17 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <h1>Dashboard</h1>
-      <button onClick={() => setShowModal(true)} className="add-button">+</button> {/* Botão para abrir o modal */}
-      <Modal show={showModal} onClose={() => setShowModal(false)}> {/* Modal */}
+      <button onClick={() => setShowModal(true)} className="add-button">+</button>
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
         <AddCategory onAdd={handleAddCategory} userId={user.id} />
         <AddTransaction onAdd={handleAddTransaction} categorias={categorias} userId={user.id} />
       </Modal>
+      <div className="saldo-mensal">
+        <h2>Saldo Mensal</h2>
+        <p>{saldoMensal.despesa > saldoMensal.receita ? `Gastos: -${(saldoMensal.despesa - saldoMensal.receita).toFixed(2)}` : `Ganhos: ${(saldoMensal.receita - saldoMensal.despesa).toFixed(2)}`}</p>
+      </div>
       <CategoryList categorias={categorias} onRemove={handleRemoveCategory} />
-      <PieChartComponent transacoes={transacoes} categorias={categorias} /> {/* Adicionando o componente do gráfico */}
+      <PieChartComponent transacoes={transacoes} categorias={categorias} />
       <TransactionList transacoes={transacoes} categorias={categorias} onRemove={handleRemoveTransaction} />
       <button onClick={handleDeleteAccount}>Excluir conta</button>
     </div>
