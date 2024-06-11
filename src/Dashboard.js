@@ -117,7 +117,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <h1>Dashboard</h1>
       <button onClick={() => setShowModal(true)} className="add-button">
         <svg xmlns="http://www.w3.org/2000/svg" width="111" height="112" viewBox="0  111 112" fill="none">
           <circle cx="55.5694" cy="55.9517" r="55.4297" fill="#FFA800" />
@@ -129,11 +128,38 @@ const Dashboard = () => {
         <AddTransaction onAdd={handleAddTransaction} categorias={categorias} userId={user.id} />
       </Modal>
       <div className="saldo-mensal">
-        <h2>Saldo Mensal</h2>
         <p>{saldoMensal.despesa > saldoMensal.receita ? `Gastos: -${(saldoMensal.despesa - saldoMensal.receita).toFixed(2)}` : `Ganhos: ${(saldoMensal.receita - saldoMensal.despesa).toFixed(2)}`}</p>
       </div>
+      <div className="chart-container">
+        <div className="chart-line"></div>
+        <div className="chart-wrapper">
+          <PieChartComponent transacoes={transacoes} categorias={categorias} />
+        </div>
+        <div className="chart-right">
+          <div className="saldo-container">
+            <div className="saldo-info">
+              <span className="label">Ganhos</span>
+              <span className="value" style={{ color: saldoMensal.receita > 0 ? 'green' : 'white' }}>
+                {saldoMensal.receita}
+              </span>
+            </div>
+            <div className="saldo-info">
+              <span className="label">Gastos</span>
+              <span className="value" style={{ color: saldoMensal.despesa > 0 ? 'red' : 'white' }}>
+                {saldoMensal.despesa}
+              </span>
+            </div>
+            <div className="separator-line"></div>
+            <div className="saldo-total">
+              <span className="label">Total</span>
+              <span className="value">
+                {saldoMensal.despesa > saldoMensal.receita ? `-${(saldoMensal.despesa - saldoMensal.receita).toFixed(2)}` : (saldoMensal.receita - saldoMensal.despesa).toFixed(2)}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
       <CategoryList categorias={categorias} onRemove={handleRemoveCategory} />
-      <PieChartComponent transacoes={transacoes} categorias={categorias} />
       <TransactionList transacoes={transacoes} categorias={categorias} onRemove={handleRemoveTransaction} />
       <button onClick={handleDeleteAccount}>Excluir conta</button>
     </div>

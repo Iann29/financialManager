@@ -36,3 +36,80 @@
   font-size: 36px; /* Ajuste o tamanho conforme necessário */
   z-index: 1;
 }
+
+.chart-container {
+  width: 919.728px;
+  height: 395.292px;
+  background: #26273B;
+  position: relative;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adicionado para espaçar os elementos */
+}
+
+.chart-line {
+  width: 919.667px;
+  height: 1px;
+  background: #31314E;
+  position: absolute;
+  top: 43.45px;
+}
+
+.chart-wrapper {
+  position: absolute;
+  left: 10px; /* Ajuste a posição horizontal */
+  top: 19px; /* Ajuste a posição vertical */
+  width: 400px; /* Ajuste conforme necessário */
+  height: 400px; /* Ajuste conforme necessário */
+}
+
+.chart-right {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 500px; /* Adicionado para mover mais para a direita */
+}
+
+.saldo-container {
+  text-align: center;
+  color: #FFF;
+  font-family: Helvetica;
+}
+
+.saldo-info {
+  font-size: 17px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 300px; /* Ajuste conforme necessário */
+}
+
+.saldo-info .label {
+  margin-right: 178px; /* Espaçamento entre o rótulo e o valor */
+}
+
+.saldo-info .value {
+  color: green; /* Ajuste para ganhos e gastos conforme necessário */
+}
+
+.separator-line {
+  width: 341.873px;
+  height: 2px;
+  background: #31314E;
+  margin: 10px 0;
+}
+
+.saldo-total {
+  font-size: 23px;
+  display: flex;
+  justify-content: space-between;
+  width: 320px; /* Ajuste conforme necessário */
+}
+
+.saldo-total .label {
+  margin-right: 178px; /* Espaçamento entre o rótulo e o valor */
+}

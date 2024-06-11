@@ -18,6 +18,10 @@ const PieChartComponent = ({ transacoes, categorias }) => {
     return { name: categoria.nome, value: total };
   }).filter(entry => entry.value > 0); // Remove categorias sem transações
 
+  if (data.length === 0) {
+    data.push({ name: '\u200B', value: 1, fill: '#33334D', stroke: 'none' }); // Usando o caractere invisível e removendo a borda
+  }
+
   const toggleType = () => setShowDespesas(!showDespesas);
 
   const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -36,7 +40,7 @@ const PieChartComponent = ({ transacoes, categorias }) => {
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
       >
-        {`${data[index].name}: ${data[index].value}`}
+        {data[index].name}
       </text>
     );
   };
@@ -56,10 +60,10 @@ const PieChartComponent = ({ transacoes, categorias }) => {
             fill="#8884d8"
             dataKey="value"
             onClick={toggleType} // Aplicando o onClick no Pie
-            animationDuration={300} // Definindo a duração da animação para 300ms
+            animationDuration={80} // Definindo a duração da animação para 300ms
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell key={`cell-${index}`} fill={entry.fill || COLORS[index % COLORS.length]} stroke={entry.stroke || 'none'} />
             ))}
           </Pie>
         </PieChart>
@@ -74,7 +78,7 @@ const PieChartComponent = ({ transacoes, categorias }) => {
         textAlign: 'center',
         pointerEvents: 'none'
       }}>
-        {showDespesas ? 'Despesas' : 'Receitas'}
+        {showDespesas ? 'Gastos' : 'Ganhos'}
       </div>
     </div>
   );
