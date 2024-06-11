@@ -1,0 +1,5 @@
+.dashboard-container {
+  background: linear-gradient(131deg, #1B1B25 39.81%, #280F2F 80.06%);
+  /* ... outros estilos do seu componente Dashboard ... */
+  height: 100vh; /* Define a altura para ocupar a tela inteira */
+}

@@ -1,4 +1,5 @@
-body {
+
+.register-page { /* Classe container para a página */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +10,7 @@ body {
   position: relative;
 }
 
-.illumination {
+.register-page .illumination { 
   position: absolute;
   width: 225.773px; 
   height: 167.743px; 
@@ -18,17 +19,17 @@ body {
   z-index: 0;
 }
 
-.top-left {
+.register-page .top-left {
   top: -50px; 
   left: -50px; 
 }
 
-.bottom-right {
+.register-page .bottom-right {
   bottom: -50px; 
   right: -50px; 
 }
 
-.register-container {
+.register-page .register-container { 
   width: 569.818px; 
   height: 559.397px; 
   border-radius: 34px;
@@ -43,7 +44,7 @@ body {
   z-index: 1;
 }
 
-.register-title {
+.register-page .register-title {
   width: 216px;
   height: 33px;
   color: #FFF;
@@ -57,7 +58,7 @@ body {
   margin-top: -20px; 
 }
 
-.page-container {
+.register-page .page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,7 +67,7 @@ body {
   width: 100%;
 }
 
-.icon-container {
+.register-page .icon-container {
   width: 60px;
   height: 60px;
   display: flex;
@@ -77,23 +78,24 @@ body {
   margin-top: -60px;
 }
 
-.icon-container svg, .icon {
+.register-page .icon-container svg, 
+.register-page .icon {
   position: absolute;
   color: #FFF;
   font-size: 30px;
 }
 
-.register-form {
+/* Estilos específicos para o formulário de registro */
+.register-page .register-form { 
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.input-group {
+.register-page .register-form .input-group { 
   --x: 0px;
   --y: 0px;
-
   position: relative;
   width: 419.046px; 
   height: 52px; 
@@ -101,7 +103,7 @@ body {
   transform: translate(var(--x), var(--y));
 }
 
-.register-input {
+.register-page .register-form .register-input { 
   width: 100%;
   height: 100%;
   padding-left: 50px; 
@@ -115,7 +117,7 @@ body {
   text-align: left; 
 }
 
-.input-icon {
+.register-page .register-form .input-icon { 
   position: absolute;
   left: 15px; 
   top: 50%;
@@ -126,27 +128,28 @@ body {
   background-repeat: no-repeat;
 }
 
-.input-icon.nome {
+.register-page .register-form .input-icon.nome {
   background-image: url('./icon/customer_ico.png');
 }
 
-.input-icon.email {
+.register-page .register-form .input-icon.email {
   background-image: url('./icon/email_ico.png');
 }
 
-.input-icon.senha {
+.register-page .register-form .input-icon.senha {
   background-image: url('./icon/lock_ico.png');
 }
 
-.input-icon.cpf {
+.register-page .register-form .input-icon.cpf {
   background-image: url('./icon/document_ico.png');
 }
 
-.input-icon.telefone {
+.register-page .register-form .input-icon.telefone {
   background-image: url('./icon/phone_ico.png');
 }
 
-.register-button {
+
+.register-page .register-button {
   width: 354.098px; 
   height: 54.656px; 
   flex-shrink: 0;
@@ -167,7 +170,7 @@ body {
   margin-top: 20px; 
 }
 
-.success-message {
+.register-page .success-message { 
   width: 249px;
   height: 16px;
   flex-shrink: 0;
@@ -181,7 +184,7 @@ body {
   margin-top: 20px; 
 }
 
-.have-account {
+.register-page .have-account { 
   margin-top: 20px;
   text-align: center;
   color: #FFF;
@@ -192,7 +195,7 @@ body {
   line-height: normal;
 }
 
-.have-account-button {
+.register-page .have-account-button { 
   background: none;
   border: none;
   color: #0057FF;

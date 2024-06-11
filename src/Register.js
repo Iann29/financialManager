@@ -45,87 +45,89 @@ const Register = () => {
 
   return (
     <HTMLWrapper>
-      <div className="illumination top-left"></div>
-      <div className="illumination bottom-right"></div>
-      <div className="page-container">
-        <div className="icon-container">
-          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="61" viewBox="0 0 60 61" fill="none">
-            <circle cx="30" cy="30.9854" r="30" fill="#26273B"/>
-          </svg>
-          <FontAwesomeIcon icon={faUser} className="icon" />
-        </div>
-        <div className="register-container">
-          <div className="background-rectangle">
-            <form onSubmit={onSubmit} className="register-form">
-              <h2 className="register-title">CRIAR CONTA</h2>
-              <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
-                <span className="input-icon nome"></span>
-                <input
-                  type="text"
-                  name="nome"
-                  value={nome}
-                  onChange={onChange}
-                  placeholder="Nome"
-                  required
-                  className="register-input"
-                />
+      <div className="register-page">
+        <div className="illumination top-left"></div>
+        <div className="illumination bottom-right"></div>
+        <div className="page-container">
+          <div className="icon-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="61" viewBox="0 0 60 61" fill="none">
+              <circle cx="30" cy="30.9854" r="30" fill="#26273B"/>
+            </svg>
+            <FontAwesomeIcon icon={faUser} className="icon" />
+          </div>
+          <div className="register-container">
+            <div className="background-rectangle">
+              <form onSubmit={onSubmit} className="register-form">
+                <h2 className="register-title">CRIAR CONTA</h2>
+                <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
+                  <span className="input-icon nome"></span>
+                  <input
+                    type="text"
+                    name="nome"
+                    value={nome}
+                    onChange={onChange}
+                    placeholder="Nome"
+                    required
+                    className="register-input"
+                  />
+                </div>
+                <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
+                  <span className="input-icon email"></span>
+                  <input
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={onChange}
+                    placeholder="E-mail"
+                    required
+                    className="register-input"
+                  />
+                </div>
+                <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
+                  <span className="input-icon senha"></span>
+                  <input
+                    type="password"
+                    name="senha"
+                    value={senha}
+                    onChange={onChange}
+                    placeholder="Senha"
+                    required
+                    className="register-input"
+                  />
+                </div>
+                <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
+                  <span className="input-icon cpf"></span>
+                  <input
+                    type="text"
+                    name="cpf"
+                    value={cpf}
+                    onChange={onChange}
+                    placeholder="CPF"
+                    required
+                    className="register-input"
+                  />
+                </div>
+                <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
+                  <span className="input-icon telefone"></span>
+                  <input
+                    type="text"
+                    name="telefone"
+                    value={telefone}
+                    onChange={onChange}
+                    placeholder="Telefone"
+                    required
+                    className="register-input"
+                  />
+                </div>
+                <button type="submit" className="register-button">Criar conta</button>
+              </form>
+              <div className="have-account">
+                Já possui uma conta? <button onClick={handleLoginRedirect} className="have-account-button">Entrar</button>
               </div>
-              <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
-                <span className="input-icon email"></span>
-                <input
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={onChange}
-                  placeholder="E-mail"
-                  required
-                  className="register-input"
-                />
-              </div>
-              <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
-                <span className="input-icon senha"></span>
-                <input
-                  type="password"
-                  name="senha"
-                  value={senha}
-                  onChange={onChange}
-                  placeholder="Senha"
-                  required
-                  className="register-input"
-                />
-              </div>
-              <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
-                <span className="input-icon cpf"></span>
-                <input
-                  type="text"
-                  name="cpf"
-                  value={cpf}
-                  onChange={onChange}
-                  placeholder="CPF"
-                  required
-                  className="register-input"
-                />
-              </div>
-              <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
-                <span className="input-icon telefone"></span>
-                <input
-                  type="text"
-                  name="telefone"
-                  value={telefone}
-                  onChange={onChange}
-                  placeholder="Telefone"
-                  required
-                  className="register-input"
-                />
-              </div>
-              <button type="submit" className="register-button">Criar conta</button>
-            </form>
-            <div className="have-account">
-              Já possui uma conta? <button onClick={handleLoginRedirect} className="have-account-button">Entrar</button>
             </div>
           </div>
+          {message && <p className="success-message">{message}</p>}
         </div>
-        {message && <p className="success-message">{message}</p>}
       </div>
     </HTMLWrapper>
   );

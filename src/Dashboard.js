@@ -6,7 +6,7 @@ import TransactionList from './TransactionList';
 import PieChartComponent from './PieChartComponent'; // Importando o componente do gráfico
 import { useAuth } from './AuthContext';
 import Modal from './Modal';
-import styles from './Dashboard.module.css'; // Importando o arquivo CSS module
+import './Dashboard.css'; // Importando o arquivo CSS
 
 const Dashboard = () => {
   const [categorias, setCategorias] = useState([]);
@@ -92,16 +92,14 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={styles.dashboardContainer}>
+    <div className="dashboard-container">
       <h1>Dashboard</h1>
-      <button onClick={() => setShowModal(true)} className={styles.addButton}>+</button> {/* Botão para abrir o modal */}
+      <button onClick={() => setShowModal(true)} className="add-button">+</button> {/* Botão para abrir o modal */}
       <Modal show={showModal} onClose={() => setShowModal(false)}> {/* Modal */}
         <AddCategory onAdd={handleAddCategory} userId={user.id} />
         <AddTransaction onAdd={handleAddTransaction} categorias={categorias} userId={user.id} />
       </Modal>
-      <AddCategory onAdd={handleAddCategory} userId={user.id} />
       <CategoryList categorias={categorias} onRemove={handleRemoveCategory} />
-      <AddTransaction onAdd={handleAddTransaction} categorias={categorias} userId={user.id} />
       <PieChartComponent transacoes={transacoes} categorias={categorias} /> {/* Adicionando o componente do gráfico */}
       <TransactionList transacoes={transacoes} categorias={categorias} onRemove={handleRemoveTransaction} />
       <button onClick={handleDeleteAccount}>Excluir conta</button>
