@@ -26,7 +26,7 @@ const Login = () => {
       const res = await axios.post('http://localhost:5000/login', formData);
       console.log(res.data);
       setMessage('Login bem-sucedido');
-      login();  // Atualizar o estado de autenticação
+      login(res.data);  // Atualizar o estado de autenticação com os dados do usuário
       navigate('/dashboard');  // Redirecionar para o dashboard
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);

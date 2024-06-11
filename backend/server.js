@@ -35,12 +35,44 @@ app.post('/register', async (req, res) => {
             [nome, email, senha, cpf, telefone]
         );
         console.log('Usuário registrado:', newUser.rows[0]);
+
+        // Adicionar categorias padrão para o novo usuário
+        await addDefaultCategoriesForUser(newUser.rows[0].id);
+
         res.json(newUser.rows[0]);
     } catch (err) {
         console.error('Erro no registro:', err.message);
         res.status(500).send('Erro no servidor');
     }
 });
+
+const addDefaultCategoriesForUser = async (userId) => {
+    const defaultCategories = [
+        { nome: 'Transporte', tipo: 'Despesa', icon: 'car' },
+        { nome: 'Comida', tipo: 'Despesa', icon: 'utensils' },
+        { nome: 'Hobby', tipo: 'Despesa', icon: 'gamepad' },
+        { nome: 'Roupas', tipo: 'Despesa', icon: 'tshirt' },
+        { nome: 'Beleza', tipo: 'Despesa', icon: 'spa' },
+        { nome: 'Social', tipo: 'Despesa', icon: 'users' },
+        { nome: 'Salário', tipo: 'Receita', icon: 'money-bill-wave' },
+        { nome: 'Bônus', tipo: 'Receita', icon: 'gift' },
+        { nome: 'Investimentos', tipo: 'Receita', icon: 'chart-line' },
+    ];
+
+    try {
+        console.log(`Adicionando categorias padrão para o usuário ${userId}`);
+        for (const category of defaultCategories) {
+            console.log(`Adicionando categoria: ${category.nome}`);
+            await pool.query(
+                'INSERT INTO CATEGORIA (nome, tipo, icon, user_id) VALUES ($1, $2, $3, $4)',
+                [category.nome, category.tipo, category.icon, userId]
+            );
+        }
+        console.log(`Categorias padrão adicionadas para o usuário ${userId}.`);
+    } catch (err) {
+        console.error(`Erro ao adicionar categorias padrão para o usuário ${userId}:`, err.message);
+    }
+};
 
 app.post('/login', async (req, res) => {
     const { email, senha } = req.body;
@@ -59,6 +91,57 @@ app.post('/login', async (req, res) => {
         }
     } catch (err) {
         console.error('Erro no login:', err.message);
+        res.status(500).send('Erro no servidor');
+    }
+});
+
+// Rotas para categorias
+app.post('/categorias', async (req, res) => {
+    const { nome, tipo, icon, user_id } = req.body;
+    try {
+        const result = await pool.query('INSERT INTO CATEGORIA (nome, tipo, icon, user_id) VALUES ($1, $2, $3, $4) RETURNING *', [nome, tipo, icon, user_id]);
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.error('Erro ao adicionar categoria:', err.message);
+        res.status(500).send('Erro no servidor');
+    }
+});
+
+app.delete('/categorias/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        await pool.query('DELETE FROM CATEGORIA WHERE id = $1', [id]);
+        res.status(204).send();
+    } catch (err) {
+        console.error('Erro ao remover categoria:', err.message);
+        res.status(500).send('Erro no servidor');
+    }
+});
+
+app.get('/categorias/:user_id', async (req, res) => {
+    const { user_id } = req.params;
+    try {
+        const result = await pool.query('SELECT * FROM CATEGORIA WHERE user_id = $1', [user_id]);
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Erro ao buscar categorias:', err.message);
+        res.status(500).send('Erro no servidor');
+    }
+});
+
+// Rota para excluir o usuário
+app.delete('/usuarios/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        // Excluir as dependências (categorias e lançamentos) primeiro
+        await pool.query('DELETE FROM lancamento WHERE usuario_id = $1', [id]);
+        await pool.query('DELETE FROM categoria WHERE user_id = $1', [id]);
+
+        // Excluir o usuário
+        await pool.query('DELETE FROM usuario WHERE id = $1', [id]);
+        res.status(204).send();
+    } catch (err) {
+        console.error('Erro ao excluir usuário:', err.message);
         res.status(500).send('Erro no servidor');
     }
 });
