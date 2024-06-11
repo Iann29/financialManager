@@ -19,8 +19,22 @@ pool.connect((err) => {
         console.error('Erro ao conectar ao banco de dados:', err.stack);
     } else {
         console.log('Conectado ao banco de dados');
+        checkPermissions();
     }
 });
+
+const checkPermissions = async () => {
+    try {
+        await pool.query('SELECT 1 FROM lancamento LIMIT 1');
+        console.log('Permissão de SELECT na tabela lancamento verificada');
+        await pool.query('SELECT 1 FROM categoria LIMIT 1');
+        console.log('Permissão de SELECT na tabela categoria verificada');
+        await pool.query('SELECT 1 FROM usuario LIMIT 1');
+        console.log('Permissão de SELECT na tabela usuario verificada');
+    } catch (err) {
+        console.error('Erro ao verificar permissões:', err.message);
+    }
+};
 
 app.get('/', (req, res) => {
     res.send('API is running...');
@@ -142,6 +156,43 @@ app.delete('/usuarios/:id', async (req, res) => {
         res.status(204).send();
     } catch (err) {
         console.error('Erro ao excluir usuário:', err.message);
+        res.status(500).send('Erro no servidor');
+    }
+});
+
+// Rota para adicionar um lançamento
+app.post('/lancamentos', async (req, res) => {
+    const { descricao, tipo, data, valor, categoria_id, usuario_id } = req.body;
+    try {
+        const result = await pool.query(
+            'INSERT INTO lancamento (descricao, tipo, data, valor, categoria_id, usuario_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            [descricao, tipo, data, valor, categoria_id, usuario_id]
+        );
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.error('Erro ao adicionar lançamento:', err.message);
+        res.status(500).send('Erro no servidor');
+    }
+});
+
+app.get('/lancamentos/:user_id', async (req, res) => {
+    const { user_id } = req.params;
+    try {
+        const result = await pool.query('SELECT * FROM lancamento WHERE usuario_id = $1 ORDER BY data DESC', [user_id]);
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Erro ao buscar lançamentos:', err.message);
+        res.status(500).send('Erro no servidor');
+    }
+});
+
+app.delete('/lancamentos/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        await pool.query('DELETE FROM lancamento WHERE id = $1', [id]);
+        res.status(204).send();
+    } catch (err) {
+        console.error('Erro ao excluir lançamento:', err.message);
         res.status(500).send('Erro no servidor');
     }
 });

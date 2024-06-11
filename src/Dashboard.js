@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import AddCategory from './AddCategory';
 import CategoryList from './CategoryList';
+import AddTransaction from './AddTransaction';
+import TransactionList from './TransactionList';
 import { useAuth } from './AuthContext';
+import './Dashboard.css';
 
-const Dashboard = ({ userId }) => {
+const Dashboard = () => {
   const [categorias, setCategorias] = useState([]);
+  const [transacoes, setTransacoes] = useState([]);
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/categorias/${userId}`);
+        const response = await fetch(`http://localhost:5000/categorias/${user.id}`);
         const result = await response.json();
         setCategorias(result);
       } catch (err) {
@@ -17,10 +22,21 @@ const Dashboard = ({ userId }) => {
       }
     };
 
-    if (userId) {
+    const fetchTransacoes = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/lancamentos/${user.id}`);
+        const result = await response.json();
+        setTransacoes(result);
+      } catch (err) {
+        console.error('Erro ao buscar transações:', err);
+      }
+    };
+
+    if (user.id) {
       fetchCategorias();
+      fetchTransacoes();
     }
-  }, [userId]);
+  }, [user.id]);
 
   const handleAddCategory = (novaCategoria) => {
     setCategorias([...categorias, novaCategoria]);
@@ -30,13 +46,33 @@ const Dashboard = ({ userId }) => {
     setCategorias(categorias.filter((categoria) => categoria.id !== id));
   };
 
-  const { logout } = useAuth();  // Corrigindo a definição do logout
+  const handleAddTransaction = (novaTransacao) => {
+    setTransacoes([novaTransacao, ...transacoes]);
+  };
+
+  const handleRemoveTransaction = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/lancamentos/${id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        setTransacoes(transacoes.filter((transacao) => transacao.id !== id));
+      } else {
+        alert('Erro ao excluir a transação');
+      }
+    } catch (err) {
+      console.error('Erro ao excluir a transação:', err);
+      alert('Erro ao excluir a transação');
+    }
+  };
+
+  const { logout } = useAuth();
 
   const handleDeleteAccount = async () => {
     const confirmDelete = window.confirm("Tem certeza que deseja excluir sua conta?");
     if (confirmDelete) {
       try {
-        const response = await fetch(`http://localhost:5000/usuarios/${userId}`, {
+        const response = await fetch(`http://localhost:5000/usuarios/${user.id}`, {
           method: 'DELETE',
         });
         if (response.ok) {
@@ -55,10 +91,11 @@ const Dashboard = ({ userId }) => {
   return (
     <div>
       <h1>Dashboard</h1>
-      <AddCategory onAdd={handleAddCategory} userId={userId} />
+      <AddCategory onAdd={handleAddCategory} userId={user.id} />
       <CategoryList categorias={categorias} onRemove={handleRemoveCategory} />
-      {/* Outros componentes da Dashboard */}
-      <button onClick={handleDeleteAccount}>Excluir conta</button> {/* Adicionando o botão */}
+      <AddTransaction onAdd={handleAddTransaction} categorias={categorias} userId={user.id} />
+      <TransactionList transacoes={transacoes} categorias={categorias} onRemove={handleRemoveTransaction} />
+      <button onClick={handleDeleteAccount}>Excluir conta</button>
     </div>
   );
 };
