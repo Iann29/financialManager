@@ -134,11 +134,11 @@
   font-weight: 400;
   line-height: normal;
   text-align: left;
-  margin: -20px 0 10px 30px; /* Ajuste conforme necessário */
-  position: absolute; /* Adicionado para permitir ajuste de posição */
-  white-space: nowrap; /* Evita quebra de linha */
-  z-index: 10; /* Garante que o texto esteja acima do gráfico */
-  top: 30px; /* Ajuste conforme necessário */
+  margin: -20px 0 10px 30px; 
+  position: absolute; 
+  white-space: nowrap; 
+  z-index: 10;
+  top: 30px; 
 }
 
 
@@ -175,15 +175,15 @@
   width: 919.728px;
   background: #26273B;
   margin: 88px auto;
-  position: relative; /* Certifique-se de que o valor é 'relative' */
-  padding-top: 30px; /* Espaçamento superior para evitar sobreposição */
+  position: relative; 
+  padding-top: 30px; 
 }
 
 .saldo-line {
   width: 919.728px;
   height: 1px;
   background: #31314E;
-  margin-top: 20px; /* Ajuste o espaçamento superior conforme necessário */
+  margin-top: 20px; 
 }
 
 .data-transacao-day {
@@ -193,24 +193,24 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-align: left; /* Alinha o texto à esquerda */
-  margin: -10px 0 10px 30px; /* Margem: cima, direita, baixo, esquerda */
-  position: relative; /* Adicionado para garantir que o posicionamento seja relativo ao contêiner pai */
+  text-align: left; 
+  margin: -10px 0 10px 30px; 
+  position: relative; 
 }
 
 .saldo-gastos-ganhos {
   display: flex;
-  flex-direction: column; /* Alinha os elementos verticalmente */
-  align-items: flex-end; /* Alinha os elementos à direita */
+  flex-direction: column; 
+  align-items: flex-end; 
   margin-right: 30px;
-  position: absolute; /* Adicionado para permitir ajuste de posição */
-  top: 8.5px; /* Ajuste conforme necessário */
-  right: 0; /* Alinha à direita */
+  position: absolute; 
+  top: 8.5px; 
+  right: 0; 
 }
 
 .saldo-ganhos,
 .saldo-gastos {
-  margin: 0; /* Remove o espaçamento entre os elementos */
+  margin: 0; 
 }
 
 .ganhos-label {
@@ -255,11 +255,11 @@
 }
 
 .transaction-value {
-  color: rgb(255, 0, 0); /* Ajustar conforme necessário para receitas e despesas */
+  color: rgb(255, 0, 0); 
 }
 
 .transaction-type {
-  color: rgb(0, 255, 98); /* Ajustar conforme necessário para receitas e despesas */
+  color: rgb(0, 255, 98); 
 }
 
 .transaction-category {

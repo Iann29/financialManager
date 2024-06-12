@@ -32,7 +32,6 @@ const AddTransaction = ({ categorias, userId, onAdd }) => {
         const result = await response.json();
         onAdd(result);
         alert('Lançamento adicionado com sucesso');
-        // Resetar os campos do formulário
         setDescricao('');
         setTipo('Despesa');
         setData('');

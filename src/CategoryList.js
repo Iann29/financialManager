@@ -1,13 +1,15 @@
 import React from 'react';
 import dinheiroIcon from './icon/dinheiro.png';
 import belezaIcon from './icon/beleza.png';
-// Importar outros ícones conforme necessário
-import './CategoryList.css'; // Adicionando o CSS
+import transporteIcon from './icon/transporte.png';
+import comidaiIcon from './icon/comidai.png';
+import './CategoryList.css'; 
 
 const iconMap = {
   'dinheiro.png': dinheiroIcon,
   'beleza.png': belezaIcon,
-  // Mapear outros ícones conforme necessário
+  'transporte.png': transporteIcon,
+  'comidai.png': comidaiIcon,
 };
 
 const getCategoryClass = (categoriaNome) => {
@@ -48,6 +50,7 @@ const CategoryList = ({ categorias, onRemove }) => {
   };
 
   const getCategoriaIcone = (icon) => {
+    console.log('Icon name:', icon); // Adicionado log para verificar o valor do ícone
     return iconMap[icon] || './icon/default.png';
   };
 

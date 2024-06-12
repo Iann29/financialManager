@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import dinheiroIcon from './icon/dinheiro.png';
 import belezaIcon from './icon/beleza.png';
-// Importar outros ícones conforme necessário
+import transporteIcon from './icon/transporte.png';
+import comidaiIcon from './icon/comidai.png';
 import './TransactionList.css';
 
 const iconMap = {
   'dinheiro.png': dinheiroIcon,
   'beleza.png': belezaIcon,
-  // Mapear outros ícones conforme necessário
+  'transporte.png': transporteIcon,
+  'comidai.png': comidaiIcon,
 };
 
-const defaultIcon = './icon/default.png'; // Ícone padrão
+const defaultIcon = './icon/default.png';
 
 const getTransactionClass = (categoriaNome) => {
   switch (categoriaNome) {

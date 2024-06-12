@@ -8,7 +8,7 @@ app.use(express.json());
 
 const pool = new Pool({
     user: 'financial_user',
-    host: '192.168.18.244',
+    host: 'localhost',
     database: 'financialManager',
     password: 'admin123',
     port: 5432,
@@ -50,7 +50,6 @@ app.post('/register', async (req, res) => {
         );
         console.log('Usuário registrado:', newUser.rows[0]);
 
-        // Adicionar categorias padrão para o novo usuário
         await addDefaultCategoriesForUser(newUser.rows[0].id);
 
         res.json(newUser.rows[0]);
@@ -62,8 +61,8 @@ app.post('/register', async (req, res) => {
 
 const addDefaultCategoriesForUser = async (userId) => {
     const defaultCategories = [
-        { nome: 'Transporte', tipo: 'Despesa', icon: 'car.png' },
-        { nome: 'Comida', tipo: 'Despesa', icon: 'utensils.png' },
+        { nome: 'Transporte', tipo: 'Despesa', icon: 'transporte.png' },
+        { nome: 'Comida', tipo: 'Despesa', icon: 'comidai.png' },
         { nome: 'Hobby', tipo: 'Despesa', icon: 'gamepad.png' },
         { nome: 'Roupas', tipo: 'Despesa', icon: 'tshirt.png' },
         { nome: 'Beleza', tipo: 'Despesa', icon: 'beleza.png' },

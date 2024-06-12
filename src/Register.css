@@ -1,5 +1,5 @@
 
-.register-page { /* Classe container para a página */
+.register-page { 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,7 +85,6 @@
   font-size: 30px;
 }
 
-/* Estilos específicos para o formulário de registro */
 .register-page .register-form { 
   width: 100%;
   display: flex;

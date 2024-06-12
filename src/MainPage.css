@@ -1,4 +1,4 @@
 .main-container {
-    height: 100vh; /* Ocupa a altura total da tela */
-    background: linear-gradient(to bottom, #1B1B25, #280F2F); /* Degradê */
+    height: 100vh; 
+    background: linear-gradient(to bottom, #1B1B25, #280F2F); 
   }

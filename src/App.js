@@ -19,7 +19,7 @@ const App = () => {
             path="/dashboard"
             element={<ProtectedRoute element={Dashboard} />}
           />
-          <Route path="/" element={<Register />} /> {/* Redirecionar para Register por padrão */}
+          <Route path="/" element={<Register />} /> {}
         </Routes>
         <ToastContainer />
       </Router>

@@ -16,10 +16,10 @@ const PieChartComponent = ({ transacoes, categorias }) => {
       .filter(transacao => transacao.categoria_id === categoria.id && transacao.tipo === (showDespesas ? 'Despesa' : 'Receita'))
       .reduce((sum, transacao) => sum + parseFloat(transacao.valor), 0);
     return { name: categoria.nome, value: total };
-  }).filter(entry => entry.value > 0); // Remove categorias sem transações
+  }).filter(entry => entry.value > 0); 
 
   if (data.length === 0) {
-    data.push({ name: '\u200B', value: 1, fill: '#33334D', stroke: 'none' }); // Usando o caractere invisível e removendo a borda
+    data.push({ name: '\u200B', value: 1, fill: '#33334D', stroke: 'none' }); 
   }
 
   const toggleType = () => setShowDespesas(!showDespesas);
@@ -27,8 +27,8 @@ const PieChartComponent = ({ transacoes, categorias }) => {
   const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
     const RADIAN = Math.PI / 180;
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const offsetX = 0; // Deslocamento em pixels no eixo X
-    const offsetY = 0; // Deslocamento em pixels no eixo Y
+    const offsetX = 0; 
+    const offsetY = 0; 
     const x = cx + (radius + offsetX) * Math.cos(-midAngle * RADIAN);
     const y = cy + (radius + offsetY) * Math.sin(-midAngle * RADIAN);
 
@@ -56,11 +56,11 @@ const PieChartComponent = ({ transacoes, categorias }) => {
             labelLine={false}
             label={renderCustomLabel}
             outerRadius={150}
-            innerRadius={75} // Adicionando o innerRadius para criar um gráfico de rosca
+            innerRadius={75} 
             fill="#8884d8"
             dataKey="value"
-            onClick={toggleType} // Aplicando o onClick no Pie
-            animationDuration={80} // Definindo a duração da animação para 300ms
+            onClick={toggleType} 
+            animationDuration={80} 
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.fill || COLORS[index % COLORS.length]} stroke={entry.stroke || 'none'} />
