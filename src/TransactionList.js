@@ -15,25 +15,25 @@ const defaultIcon = './icon/default.png'; // Ícone padrão
 const getTransactionClass = (categoriaNome) => {
   switch (categoriaNome) {
     case 'Transporte':
-      return 'transaction-transporte';
+      return 'custom-transaction-transporte';
     case 'Comida':
-      return 'transaction-comida';
+      return 'custom-transaction-comida';
     case 'Hobby':
-      return 'transaction-hobby';
+      return 'custom-transaction-hobby';
     case 'Roupas':
-      return 'transaction-roupas';
+      return 'custom-transaction-roupas';
     case 'Beleza':
-      return 'transaction-beleza';
+      return 'custom-transaction-beleza';
     case 'Social':
-      return 'transaction-social';
+      return 'custom-transaction-social';
     case 'Salário':
-      return 'transaction-salario';
+      return 'custom-transaction-salario';
     case 'Bônus':
-      return 'transaction-bonus';
+      return 'custom-transaction-bonus';
     case 'Investimentos':
-      return 'transaction-investimentos';
+      return 'custom-transaction-investimentos';
     default:
-      return 'transaction-default';
+      return 'custom-transaction-default';
   }
 };
 
@@ -49,20 +49,20 @@ const TransactionList = ({ transacoes, categorias, onRemove }) => {
   };
 
   return (
-    <div className="transaction-list">
+    <div className="custom-transaction-list">
       <ul>
         {transacoes.map(transacao => (
-          <li key={transacao.id} className="transaction-item">
-            <div className={`transaction-icon ${getTransactionClass(getCategoriaNome(transacao.categoria_id))}`}>
+          <li key={transacao.id} className="custom-transaction-item">
+            <div className={`custom-transaction-icon ${getTransactionClass(getCategoriaNome(transacao.categoria_id))}`}>
               <img src={iconMap[getCategoriaIcone(transacao.categoria_id)] || defaultIcon} alt="icon" />
             </div>
-            <div className="transaction-info">
-              <span className="transaction-category">
+            <div className="custom-transaction-info">
+              <span className="custom-transaction-category">
                 {getCategoriaNome(transacao.categoria_id)}
               </span>
-              <span className="transaction-description">{transacao.descricao}</span>
-              <span className="transaction-value-custom">{transacao.valor}</span>
-              <button onClick={() => onRemove(transacao.id)}>Excluir</button>
+              <span className="custom-transaction-description">{transacao.descricao}</span>
+              <span className="custom-transaction-value">{transacao.valor}</span>
+              <button className="custom-transaction-remove-button" onClick={() => onRemove(transacao.id)}>X</button>
             </div>
           </li>
         ))}
