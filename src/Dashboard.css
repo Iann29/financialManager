@@ -125,6 +125,24 @@
   margin: 10px 0;
 }
 
+.saldo-mes {
+  display: inline-block;
+  color: #787878;
+  font-family: Helvetica;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: left;
+  margin: -20px 0 10px 30px; /* Ajuste conforme necessário */
+  position: absolute; /* Adicionado para permitir ajuste de posição */
+  white-space: nowrap; /* Evita quebra de linha */
+  z-index: 10; /* Garante que o texto esteja acima do gráfico */
+  top: 30px; /* Ajuste conforme necessário */
+}
+
+
+
 .saldo-total {
   font-size: 23px;
   display: flex;

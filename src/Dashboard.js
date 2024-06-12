@@ -11,6 +11,14 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import customerIcon from './icon/Person_ico.png'; // Certifique-se de que o caminho está correto
 import './Dashboard.css';
 
+const getMonthName = (monthIndex) => {
+  const months = [
+    'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+    'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+  ];
+  return months[monthIndex];
+};
+
 const Dashboard = () => {
   const [categorias, setCategorias] = useState([]);
   const [transacoes, setTransacoes] = useState([]);
@@ -149,6 +157,9 @@ const Dashboard = () => {
         </div>
       </Modal>
       <div className="chart-container">
+        <div className="saldo-mes">
+          Saldo de {getMonthName(new Date().getMonth())}
+        </div>
         <div className="chart-line"></div>
         <div className="chart-wrapper">
           <PieChartComponent transacoes={transacoes} categorias={categorias} />
@@ -183,14 +194,18 @@ const Dashboard = () => {
             {formatDate(new Date())}
           </div>
           <div className="saldo-gastos-ganhos">
-            <div className="saldo-ganhos">
-              <span className="ganhos-label">Ganhos: </span>
-              <span className="ganhos-value">{saldoMensal.receita}</span>
-            </div>
-            <div className="saldo-gastos">
-              <span className="gastos-label">Gastos: </span>
-              <span className="gastos-value">{saldoMensal.despesa}</span>
-            </div>
+            {saldoMensal.receita > 0 && (
+              <div className="saldo-ganhos">
+                <span className="ganhos-label">Ganhos: </span>
+                <span className="ganhos-value">{saldoMensal.receita}</span>
+              </div>
+            )}
+            {saldoMensal.despesa > 0 && (
+              <div className="saldo-gastos">
+                <span className="gastos-label">Gastos: </span>
+                <span className="gastos-value">{saldoMensal.despesa}</span>
+              </div>
+            )}
           </div>
         </div>
         <div className="saldo-line"></div>
