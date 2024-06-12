@@ -1,23 +1,9 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCar, faUtensils, faGamepad, faTshirt, faSpa, faUsers, faMoneyBillWave, faGift, faChartLine } from '@fortawesome/free-solid-svg-icons';
-
-const iconOptions = {
-    'car': faCar,
-    'utensils': faUtensils,
-    'gamepad': faGamepad,
-    'tshirt': faTshirt,
-    'spa': faSpa,
-    'users': faUsers,
-    'money-bill-wave': faMoneyBillWave,
-    'gift': faGift,
-    'chart-line': faChartLine,
-};
 
 const AddCategory = ({ onAdd, userId }) => {
   const [nome, setNome] = useState('');
   const [tipo, setTipo] = useState('Despesa');
-  const [icon, setIcon] = useState('car');
+  const [icon, setIcon] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,8 +18,8 @@ const AddCategory = ({ onAdd, userId }) => {
       const result = await response.json();
       onAdd(result);
       setNome('');
-      setTipo('Despesa'); // Reset tipo selection
-      setIcon('car'); // Reset icon selection
+      setTipo('Despesa');
+      setIcon('');
     } catch (err) {
       console.error('Erro ao adicionar categoria:', err);
     }
@@ -52,11 +38,13 @@ const AddCategory = ({ onAdd, userId }) => {
         <option value="Despesa">Despesa</option>
         <option value="Receita">Receita</option>
       </select>
-      <select value={icon} onChange={(e) => setIcon(e.target.value)}>
-        {Object.keys(iconOptions).map(key => (
-          <option key={key} value={key}>{key}</option>
-        ))}
-      </select>
+      <input
+        type="text"
+        placeholder="Nome do ícone (ex: dinheiro.png)"
+        value={icon}
+        onChange={(e) => setIcon(e.target.value)}
+        required
+      />
       <button type="submit">Adicionar Categoria</button>
     </form>
   );

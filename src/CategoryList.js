@@ -1,17 +1,39 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCar, faUtensils, faGamepad, faTshirt, faSpa, faUsers, faMoneyBillWave, faGift, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import dinheiroIcon from './icon/dinheiro.png';
+import belezaIcon from './icon/beleza.png';
+// ... importar outros ícones conforme necessário
 
-const iconOptions = {
-    'car': faCar,
-    'utensils': faUtensils,
-    'gamepad': faGamepad,
-    'tshirt': faTshirt,
-    'spa': faSpa,
-    'users': faUsers,
-    'money-bill-wave': faMoneyBillWave,
-    'gift': faGift,
-    'chart-line': faChartLine,
+const iconMap = {
+  'dinheiro.png': dinheiroIcon,
+  'beleza.png': belezaIcon,
+  // ... mapear outros ícones conforme necessário
+};
+
+const defaultIcon = './icon/default.png'; // Ícone padrão
+
+const getCategoriaClass = (categoriaNome) => {
+  switch (categoriaNome) {
+    case 'Transporte':
+      return 'categoria-transporte';
+    case 'Comida':
+      return 'categoria-comida';
+    case 'Hobby':
+      return 'categoria-hobby';
+    case 'Roupas':
+      return 'categoria-roupas';
+    case 'Beleza':
+      return 'categoria-beleza';
+    case 'Social':
+      return 'categoria-social';
+    case 'Salário':
+      return 'categoria-salario';
+    case 'Bônus':
+      return 'categoria-bonus';
+    case 'Investimentos':
+      return 'categoria-investimentos';
+    default:
+      return 'categoria-default';
+  }
 };
 
 const CategoryList = ({ categorias, onRemove }) => {
@@ -26,11 +48,17 @@ const CategoryList = ({ categorias, onRemove }) => {
     }
   };
 
+  const getCategoriaIcone = (icon) => {
+    return iconMap[icon] || defaultIcon;
+  };
+
   return (
     <ul>
       {categorias.map((categoria) => (
         <li key={categoria.id}>
-          <FontAwesomeIcon icon={iconOptions[categoria.icon]} />
+          <span className={`transaction-category ${getCategoriaClass(categoria.nome)}`}>
+            <img src={getCategoriaIcone(categoria.icon)} alt="icon" className="transaction-icon" />
+          </span>
           {categoria.nome} ({categoria.tipo})
           <button onClick={() => handleRemove(categoria.id)}>Remover</button>
         </li>

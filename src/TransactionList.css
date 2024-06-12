@@ -1,0 +1,59 @@
+.transaction-category {
+    display: flex;
+    align-items: center;
+}
+
+.transaction-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff; /* Default color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transaction-icon img {
+    width: 20px; /* Ajuste conforme necessário */
+    height: 20px; /* Ajuste conforme necessário */
+}
+
+.categoria-transporte .transaction-icon {
+    background-color: #FF6F61; /* Cor para Transporte */
+}
+
+.categoria-comida .transaction-icon {
+    background-color: #6B5B95; /* Cor para Comida */
+}
+
+.categoria-hobby .transaction-icon {
+    background-color: #88B04B; /* Cor para Hobby */
+}
+
+.categoria-roupas .transaction-icon {
+    background-color: #FFA500; /* Cor para Roupas */
+}
+
+.categoria-beleza .transaction-icon {
+    background-color: #FFB6C1; /* Cor para Beleza */
+}
+
+.categoria-social .transaction-icon {
+    background-color: #20B2AA; /* Cor para Social */
+}
+
+.categoria-salario .transaction-icon {
+    background-color: #FFD700; /* Cor para Salário */
+}
+
+.categoria-bonus .transaction-icon {
+    background-color: #8A2BE2; /* Cor para Bônus */
+}
+
+.categoria-investimentos .transaction-icon {
+    background-color: #00CED1; /* Cor para Investimentos */
+}
+
+.categoria-default .transaction-icon {
+    background-color: #ccc; /* Cor padrão */
+}

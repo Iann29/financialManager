@@ -1,17 +1,40 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCar, faUtensils, faGamepad, faTshirt, faSpa, faUsers, faMoneyBillWave, faGift, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import dinheiroIcon from './icon/dinheiro.png';
+import belezaIcon from './icon/beleza.png';
+// Importar outros ícones conforme necessário
+import './TransactionList.css'; // Adicione esta linha para importar o CSS
 
 const iconMap = {
-  car: faCar,
-  utensils: faUtensils,
-  gamepad: faGamepad,
-  tshirt: faTshirt,
-  spa: faSpa,
-  users: faUsers,
-  'money-bill-wave': faMoneyBillWave,
-  gift: faGift,
-  'chart-line': faChartLine
+  'dinheiro.png': dinheiroIcon,
+  'beleza.png': belezaIcon,
+  // Mapear outros ícones conforme necessário
+};
+
+const defaultIcon = './icon/default.png'; // Ícone padrão
+
+const getCategoriaClass = (categoriaNome) => {
+  switch (categoriaNome) {
+    case 'Transporte':
+      return 'categoria-transporte';
+    case 'Comida':
+      return 'categoria-comida';
+    case 'Hobby':
+      return 'categoria-hobby';
+    case 'Roupas':
+      return 'categoria-roupas';
+    case 'Beleza':
+      return 'categoria-beleza';
+    case 'Social':
+      return 'categoria-social';
+    case 'Salário':
+      return 'categoria-salario';
+    case 'Bônus':
+      return 'categoria-bonus';
+    case 'Investimentos':
+      return 'categoria-investimentos';
+    default:
+      return 'categoria-default';
+  }
 };
 
 const TransactionList = ({ transacoes, categorias, onRemove }) => {
@@ -22,7 +45,7 @@ const TransactionList = ({ transacoes, categorias, onRemove }) => {
 
   const getCategoriaIcone = (categoriaId) => {
     const categoria = categorias.find(cat => cat.id === categoriaId);
-    return categoria ? categoria.icon : 'unknown';
+    return categoria ? categoria.icon : 'unknown.png';
   };
 
   return (
@@ -37,8 +60,11 @@ const TransactionList = ({ transacoes, categorias, onRemove }) => {
               <button onClick={() => onRemove(transacao.id)}>Excluir</button>
             </div>
             <div className="transaction-info">
-              <span className="transaction-category">
-                <FontAwesomeIcon icon={iconMap[getCategoriaIcone(transacao.categoria_id)]} /> {getCategoriaNome(transacao.categoria_id)}
+              <span className={`transaction-category ${getCategoriaClass(getCategoriaNome(transacao.categoria_id))}`}>
+                <div className="transaction-icon">
+                  <img src={iconMap[getCategoriaIcone(transacao.categoria_id)] || defaultIcon} alt="icon" />
+                </div>
+                {getCategoriaNome(transacao.categoria_id)}
               </span>
               <span className="transaction-description">{transacao.descricao}</span>
             </div>

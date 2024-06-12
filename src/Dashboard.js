@@ -6,9 +6,8 @@ import TransactionList from './TransactionList';
 import PieChartComponent from './PieChartComponent';
 import { useAuth } from './AuthContext';
 import Modal from './Modal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import customerIcon from './icon/Person_ico.png'; // Certifique-se de que o caminho está correto
+import customerIcon from './icon/Person_ico.png';
+import addIcon from './icon/add.png';
 import './Dashboard.css';
 
 const getMonthName = (monthIndex) => {
@@ -141,7 +140,7 @@ const Dashboard = () => {
         <svg xmlns="http://www.w3.org/2000/svg" width="111" height="112" viewBox="0 0 111 112" fill="none">
           <circle cx="55.5694" cy="55.9517" r="55.4297" fill="#FFA800" />
         </svg>
-        <FontAwesomeIcon icon={faPlus} className="add-icon-mais" />
+        <img src={addIcon} alt="Adicionar" className="add-icon-mais" />
       </button>
       <button onClick={() => setShowProfileModal(true)} className="profile-button">
         <img src={customerIcon} alt="Profile Icon" className="profile-icon" />
