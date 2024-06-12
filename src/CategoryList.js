@@ -2,7 +2,7 @@ import React from 'react';
 import dinheiroIcon from './icon/dinheiro.png';
 import belezaIcon from './icon/beleza.png';
 // Importar outros ícones conforme necessário
-import './TransactionList.css'; // Adicionando o CSS
+import './CategoryList.css'; // Adicionando o CSS
 
 const iconMap = {
   'dinheiro.png': dinheiroIcon,
