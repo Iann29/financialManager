@@ -62,15 +62,15 @@ app.post('/register', async (req, res) => {
 
 const addDefaultCategoriesForUser = async (userId) => {
     const defaultCategories = [
-        { nome: 'Transporte', tipo: 'Despesa', icon: 'transporte.png' },
-        { nome: 'Comida', tipo: 'Despesa', icon: 'comida.png' },
-        { nome: 'Hobby', tipo: 'Despesa', icon: 'hobby.png' },
-        { nome: 'Roupas', tipo: 'Despesa', icon: 'roupas.png' },
+        { nome: 'Transporte', tipo: 'Despesa', icon: 'car.png' },
+        { nome: 'Comida', tipo: 'Despesa', icon: 'utensils.png' },
+        { nome: 'Hobby', tipo: 'Despesa', icon: 'gamepad.png' },
+        { nome: 'Roupas', tipo: 'Despesa', icon: 'tshirt.png' },
         { nome: 'Beleza', tipo: 'Despesa', icon: 'beleza.png' },
-        { nome: 'Social', tipo: 'Despesa', icon: 'social.png' },
+        { nome: 'Social', tipo: 'Despesa', icon: 'users.png' },
         { nome: 'Salário', tipo: 'Receita', icon: 'dinheiro.png' },
-        { nome: 'Bônus', tipo: 'Receita', icon: 'bonus.png' },
-        { nome: 'Investimentos', tipo: 'Receita', icon: 'investimentos.png' },
+        { nome: 'Bônus', tipo: 'Receita', icon: 'gift.png' },
+        { nome: 'Investimentos', tipo: 'Receita', icon: 'chart-line.png' },
     ];
 
     try {

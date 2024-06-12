@@ -1,38 +1,37 @@
 import React from 'react';
 import dinheiroIcon from './icon/dinheiro.png';
 import belezaIcon from './icon/beleza.png';
-// ... importar outros ícones conforme necessário
+// Importar outros ícones conforme necessário
+import './TransactionList.css'; // Adicionando o CSS
 
 const iconMap = {
   'dinheiro.png': dinheiroIcon,
   'beleza.png': belezaIcon,
-  // ... mapear outros ícones conforme necessário
+  // Mapear outros ícones conforme necessário
 };
 
-const defaultIcon = './icon/default.png'; // Ícone padrão
-
-const getCategoriaClass = (categoriaNome) => {
+const getCategoryClass = (categoriaNome) => {
   switch (categoriaNome) {
     case 'Transporte':
-      return 'categoria-transporte';
+      return 'category-transporte';
     case 'Comida':
-      return 'categoria-comida';
+      return 'category-comida';
     case 'Hobby':
-      return 'categoria-hobby';
+      return 'category-hobby';
     case 'Roupas':
-      return 'categoria-roupas';
+      return 'category-roupas';
     case 'Beleza':
-      return 'categoria-beleza';
+      return 'category-beleza';
     case 'Social':
-      return 'categoria-social';
+      return 'category-social';
     case 'Salário':
-      return 'categoria-salario';
+      return 'category-salario';
     case 'Bônus':
-      return 'categoria-bonus';
+      return 'category-bonus';
     case 'Investimentos':
-      return 'categoria-investimentos';
+      return 'category-investimentos';
     default:
-      return 'categoria-default';
+      return 'category-default';
   }
 };
 
@@ -49,21 +48,23 @@ const CategoryList = ({ categorias, onRemove }) => {
   };
 
   const getCategoriaIcone = (icon) => {
-    return iconMap[icon] || defaultIcon;
+    return iconMap[icon] || './icon/default.png';
   };
 
   return (
-    <ul>
-      {categorias.map((categoria) => (
-        <li key={categoria.id}>
-          <span className={`transaction-category ${getCategoriaClass(categoria.nome)}`}>
-            <img src={getCategoriaIcone(categoria.icon)} alt="icon" className="transaction-icon" />
-          </span>
-          {categoria.nome} ({categoria.tipo})
-          <button onClick={() => handleRemove(categoria.id)}>Remover</button>
-        </li>
-      ))}
-    </ul>
+    <div className="category-list">
+      <ul>
+        {categorias.map((categoria) => (
+          <li key={categoria.id} className="category-item">
+            <div className={`category-icon ${getCategoryClass(categoria.nome)}`}>
+              <img src={getCategoriaIcone(categoria.icon)} alt="icon" />
+            </div>
+            {categoria.nome} ({categoria.tipo})
+            <button onClick={() => handleRemove(categoria.id)}>Remover</button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

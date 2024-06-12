@@ -2,7 +2,7 @@ import React from 'react';
 import dinheiroIcon from './icon/dinheiro.png';
 import belezaIcon from './icon/beleza.png';
 // Importar outros ícones conforme necessário
-import './TransactionList.css'; // Adicione esta linha para importar o CSS
+import './TransactionList.css';
 
 const iconMap = {
   'dinheiro.png': dinheiroIcon,
@@ -12,28 +12,28 @@ const iconMap = {
 
 const defaultIcon = './icon/default.png'; // Ícone padrão
 
-const getCategoriaClass = (categoriaNome) => {
+const getTransactionClass = (categoriaNome) => {
   switch (categoriaNome) {
     case 'Transporte':
-      return 'categoria-transporte';
+      return 'transaction-transporte';
     case 'Comida':
-      return 'categoria-comida';
+      return 'transaction-comida';
     case 'Hobby':
-      return 'categoria-hobby';
+      return 'transaction-hobby';
     case 'Roupas':
-      return 'categoria-roupas';
+      return 'transaction-roupas';
     case 'Beleza':
-      return 'categoria-beleza';
+      return 'transaction-beleza';
     case 'Social':
-      return 'categoria-social';
+      return 'transaction-social';
     case 'Salário':
-      return 'categoria-salario';
+      return 'transaction-salario';
     case 'Bônus':
-      return 'categoria-bonus';
+      return 'transaction-bonus';
     case 'Investimentos':
-      return 'categoria-investimentos';
+      return 'transaction-investimentos';
     default:
-      return 'categoria-default';
+      return 'transaction-default';
   }
 };
 
@@ -53,15 +53,15 @@ const TransactionList = ({ transacoes, categorias, onRemove }) => {
       <ul>
         {transacoes.map(transacao => (
           <li key={transacao.id} className="transaction-item">
-            <div className="transaction-icon">
+            <div className={`transaction-icon ${getTransactionClass(getCategoriaNome(transacao.categoria_id))}`}>
               <img src={iconMap[getCategoriaIcone(transacao.categoria_id)] || defaultIcon} alt="icon" />
             </div>
             <div className="transaction-info">
-              <span className={`transaction-category ${getCategoriaClass(getCategoriaNome(transacao.categoria_id))}`}>
+              <span className="transaction-category">
                 {getCategoriaNome(transacao.categoria_id)}
               </span>
               <span className="transaction-description">{transacao.descricao}</span>
-              <span className="transaction-value">{transacao.valor}</span>
+              <span className="transaction-value-custom">{transacao.valor}</span>
               <button onClick={() => onRemove(transacao.id)}>Excluir</button>
             </div>
           </li>

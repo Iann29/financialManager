@@ -1,59 +1,174 @@
-.transaction-category {
+/* Estilos para a lista de transações */
+.transaction-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .transaction-item {
     display: flex;
     align-items: center;
-}
-
-.transaction-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #fff; /* Default color */
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #31314E;
+  }
+  
+  .transaction-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.transaction-icon img {
-    width: 20px; /* Ajuste conforme necessário */
-    height: 20px; /* Ajuste conforme necessário */
-}
-
-.categoria-transporte .transaction-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .transaction-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+  }
+  
+  /* Cores para as transações */
+  .transaction-transporte {
     background-color: #FF6F61; /* Cor para Transporte */
-}
-
-.categoria-comida .transaction-icon {
+  }
+  
+  .transaction-comida {
     background-color: #6B5B95; /* Cor para Comida */
-}
-
-.categoria-hobby .transaction-icon {
+  }
+  
+  .transaction-hobby {
     background-color: #88B04B; /* Cor para Hobby */
-}
-
-.categoria-roupas .transaction-icon {
+  }
+  
+  .transaction-roupas {
     background-color: #FFA500; /* Cor para Roupas */
-}
-
-.categoria-beleza .transaction-icon {
+  }
+  
+  .transaction-beleza {
     background-color: #FFB6C1; /* Cor para Beleza */
-}
-
-.categoria-social .transaction-icon {
+  }
+  
+  .transaction-social {
     background-color: #20B2AA; /* Cor para Social */
-}
-
-.categoria-salario .transaction-icon {
+  }
+  
+  .transaction-salario {
     background-color: #FFD700; /* Cor para Salário */
-}
-
-.categoria-bonus .transaction-icon {
+  }
+  
+  .transaction-bonus {
     background-color: #8A2BE2; /* Cor para Bônus */
-}
-
-.categoria-investimentos .transaction-icon {
+  }
+  
+  .transaction-investimentos {
     background-color: #00CED1; /* Cor para Investimentos */
-}
-
-.categoria-default .transaction-icon {
+  }
+  
+  .transaction-default {
     background-color: #ccc; /* Cor padrão */
-}
+  }
+  
+  .transaction-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: space-between;
+  }
+  
+  .transaction-category {
+    color: white;
+    font-family: Helvetica;
+    margin-right: 10px;
+  }
+  
+  .transaction-description {
+    color: white;
+    font-family: Helvetica;
+    margin-right: 10px;
+  }
+  
+  .transaction-value-custom {
+    color: white; /* Cor branca para os valores das transações */
+    font-family: Helvetica;
+    margin-right: 10px;
+  }
+  
+  .transaction-info button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-family: Helvetica;
+  }
+  
+  /* Estilos para a lista de categorias */
+  .category-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .category-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #31314E;
+  }
+  
+  .category-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .category-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+  }
+  
+  /* Cores para as categorias */
+  .category-transporte {
+    background-color: #FF6F61; /* Cor para Transporte */
+  }
+  
+  .category-comida {
+    background-color: #6B5B95; /* Cor para Comida */
+  }
+  
+  .category-hobby {
+    background-color: #88B04B; /* Cor para Hobby */
+  }
+  
+  .category-roupas {
+    background-color: #FFA500; /* Cor para Roupas */
+  }
+  
+  .category-beleza {
+    background-color: #FFB6C1; /* Cor para Beleza */
+  }
+  
+  .category-social {
+    background-color: #20B2AA; /* Cor para Social */
+  }
+  
+  .category-salario {
+    background-color: #FFD700; /* Cor para Salário */
+  }
+  
+  .category-bonus {
+    background-color: #8A2BE2; /* Cor para Bônus */
+  }
+  
+  .category-investimentos {
+    background-color: #00CED1; /* Cor para Investimentos */
+  }
+  
+  .category-default {
+    background-color: #ccc; /* Cor padrão */
+  }
