@@ -53,20 +53,16 @@ const TransactionList = ({ transacoes, categorias, onRemove }) => {
       <ul>
         {transacoes.map(transacao => (
           <li key={transacao.id} className="transaction-item">
-            <div className="transaction-details">
-              <span className="transaction-date">{new Date(transacao.data).toLocaleDateString()}</span>
-              <span className="transaction-type">{transacao.tipo}</span>
-              <span className="transaction-value">{transacao.valor}</span>
-              <button onClick={() => onRemove(transacao.id)}>Excluir</button>
+            <div className="transaction-icon">
+              <img src={iconMap[getCategoriaIcone(transacao.categoria_id)] || defaultIcon} alt="icon" />
             </div>
             <div className="transaction-info">
               <span className={`transaction-category ${getCategoriaClass(getCategoriaNome(transacao.categoria_id))}`}>
-                <div className="transaction-icon">
-                  <img src={iconMap[getCategoriaIcone(transacao.categoria_id)] || defaultIcon} alt="icon" />
-                </div>
                 {getCategoriaNome(transacao.categoria_id)}
               </span>
               <span className="transaction-description">{transacao.descricao}</span>
+              <span className="transaction-value">{transacao.valor}</span>
+              <button onClick={() => onRemove(transacao.id)}>Excluir</button>
             </div>
           </li>
         ))}
