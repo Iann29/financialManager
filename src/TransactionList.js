@@ -27,7 +27,6 @@ const TransactionList = ({ transacoes, categorias, onRemove }) => {
 
   return (
     <div className="transaction-list">
-      <h2>Transações</h2>
       <ul>
         {transacoes.map(transacao => (
           <li key={transacao.id} className="transaction-item">

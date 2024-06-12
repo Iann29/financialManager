@@ -33,8 +33,30 @@
 
 .add-icon-mais {
   color: white;
-  font-size: 36px; /* Ajuste o tamanho conforme necessário */
+  font-size: 36px;
   z-index: 1;
+}
+
+.profile-button {
+  position: fixed;
+  bottom: 840px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  background: #26273B;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-icon {
+  width: 30px;
+  height: 30px;
 }
 
 .chart-container {
@@ -45,7 +67,7 @@
   margin: 20px auto;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Adicionado para espaçar os elementos */
+  justify-content: space-between;
 }
 
 .chart-line {
@@ -58,10 +80,10 @@
 
 .chart-wrapper {
   position: absolute;
-  left: 10px; /* Ajuste a posição horizontal */
-  top: 19px; /* Ajuste a posição vertical */
-  width: 400px; /* Ajuste conforme necessário */
-  height: 400px; /* Ajuste conforme necessário */
+  left: 10px;
+  top: 19px;
+  width: 400px;
+  height: 400px;
 }
 
 .chart-right {
@@ -71,7 +93,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-left: 500px; /* Adicionado para mover mais para a direita */
+  margin-left: 500px;
 }
 
 .saldo-container {
@@ -85,15 +107,15 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
-  width: 300px; /* Ajuste conforme necessário */
+  width: 300px;
 }
 
 .saldo-info .label {
-  margin-right: 178px; /* Espaçamento entre o rótulo e o valor */
+  margin-right: 178px;
 }
 
 .saldo-info .value {
-  color: green; /* Ajuste para ganhos e gastos conforme necessário */
+  color: green;
 }
 
 .separator-line {
@@ -107,9 +129,123 @@
   font-size: 23px;
   display: flex;
   justify-content: space-between;
-  width: 320px; /* Ajuste conforme necessário */
+  width: 320px;
 }
 
 .saldo-total .label {
-  margin-right: 178px; /* Espaçamento entre o rótulo e o valor */
+  margin-right: 178px;
 }
+
+.profile-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-account-button {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.saldo-transacoes-container {
+  width: 919.728px;
+  background: #26273B;
+  margin: 88px auto;
+  position: relative; /* Certifique-se de que o valor é 'relative' */
+  padding-top: 30px; /* Espaçamento superior para evitar sobreposição */
+}
+
+.saldo-line {
+  width: 919.728px;
+  height: 1px;
+  background: #31314E;
+  margin-top: 20px; /* Ajuste o espaçamento superior conforme necessário */
+}
+
+.data-transacao-day {
+  color: #787878;
+  font-family: Helvetica;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: left; /* Alinha o texto à esquerda */
+  margin: -10px 0 10px 30px; /* Margem: cima, direita, baixo, esquerda */
+  position: relative; /* Adicionado para garantir que o posicionamento seja relativo ao contêiner pai */
+}
+
+.saldo-gastos-ganhos {
+  display: flex;
+  flex-direction: column; /* Alinha os elementos verticalmente */
+  align-items: flex-end; /* Alinha os elementos à direita */
+  margin-right: 30px;
+  position: absolute; /* Adicionado para permitir ajuste de posição */
+  top: 8.5px; /* Ajuste conforme necessário */
+  right: 0; /* Alinha à direita */
+}
+
+.saldo-ganhos,
+.saldo-gastos {
+  margin: 0; /* Remove o espaçamento entre os elementos */
+}
+
+.ganhos-label {
+  color: green;
+}
+
+.ganhos-value {
+  color: green;
+}
+
+.gastos-label {
+  color: #787878;
+}
+
+.gastos-value {
+  color: white;
+}
+
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.transaction-details {
+  display: flex;
+  align-items: center;
+}
+
+.transaction-icon {
+  margin-right: 50px;
+}
+
+.transaction-date,
+.transaction-category,
+.transaction-description,
+.transaction-type,
+.transaction-value {
+  color: #FFF;
+  font-family: Helvetica;
+}
+
+.transaction-value {
+  color: rgb(255, 0, 0); /* Ajustar conforme necessário para receitas e despesas */
+}
+
+.transaction-type {
+  color: rgb(0, 255, 98); /* Ajustar conforme necessário para receitas e despesas */
+}
+
+.transaction-category {
+  color: white;
+}
+
+
