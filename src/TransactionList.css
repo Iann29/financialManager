@@ -1,18 +1,17 @@
 /* Estilos para a lista de transações */
 .custom-transaction-list ul {
     list-style-type: none;
-    padding: 1;
-  }
+    padding: 10;
+}
   
-  .custom-transaction-item {
+.custom-transaction-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
-    border-bottom: 0px solid #31314E;
-  }
+}
   
-  .custom-transaction-icon {
+.custom-transaction-icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,92 +20,99 @@
     border-radius: 50%;
     margin-right: 10px; /* Ajuste horizontal */
     margin-top: 0; /* Ajuste vertical */
-  }
+}
   
-  /* Ajuste do ícone dentro do círculo */
-  .custom-transaction-icon img {
+/* Ajuste do ícone dentro do círculo */
+.custom-transaction-icon img {
     max-width: 100%;
     max-height: 65%;
     border-radius: 0%;
-  }
+}
   
-  /* Cores para as transações */
-  .custom-transaction-transporte {
+/* Cores para as transações */
+.custom-transaction-transporte {
     background-color: #FF6F61; /* Cor para Transporte */
-  }
+}
   
-  .custom-transaction-comida {
+.custom-transaction-comida {
     background-color: #6B5B95; /* Cor para Comida */
-  }
+}
   
-  .custom-transaction-hobby {
+.custom-transaction-hobby {
     background-color: #88B04B; /* Cor para Hobby */
-  }
+}
   
-  .custom-transaction-roupas {
+.custom-transaction-roupas {
     background-color: #FFA500; /* Cor para Roupas */
-  }
+}
   
-  .custom-transaction-beleza {
+.custom-transaction-beleza {
     background-color: #FFB6C1; /* Cor para Beleza */
-  }
+}
   
-  .custom-transaction-social {
+.custom-transaction-social {
     background-color: #20B2AA; /* Cor para Social */
-  }
+}
   
-  .custom-transaction-salario {
+.custom-transaction-salario {
     background-color: #FFD700; /* Cor para Salário */
-  }
+}
   
-  .custom-transaction-bonus {
+.custom-transaction-bonus {
     background-color: #8A2BE2; /* Cor para Bônus */
-  }
+}
   
-  .custom-transaction-investimentos {
+.custom-transaction-investimentos {
     background-color: #00CED1; /* Cor para Investimentos */
-  }
+}
   
-  .custom-transaction-default {
+.custom-transaction-default {
     background-color: #ccc; /* Cor padrão */
-  }
+}
   
-  .custom-transaction-info {
+.custom-transaction-info {
     display: flex;
     align-items: center;
     flex: 1;
     justify-content: space-between;
-  }
+}
   
-  .custom-transaction-category {
+.custom-transaction-details {
+    display: flex;
+    flex-direction: column; /* Alinhar categoria e descrição em coluna */
+}
+
+.custom-transaction-category {
     color: white;
     font-family: Helvetica;
-    margin-right: 10px; /* Ajuste horizontal */
-    margin-top: 0; /* Ajuste vertical */
-  }
+    margin-bottom: 5px; /* Espaço entre categoria e descrição */
+}
   
-  .custom-transaction-description {
-    color: white;
+.custom-transaction-description {
+    color: #787878;
     font-family: Helvetica;
-    margin-right: 10px; /* Ajuste horizontal */
-    margin-top: 0; /* Ajuste vertical */
-  }
+    margin: 0; /* Remover margem */
+}
   
-  .custom-transaction-value {
+.custom-transaction-value-container {
+    display: flex;
+    align-items: center;
+}
+
+.custom-transaction-value {
     color: white; /* Cor branca para os valores das transações */
     font-family: Helvetica;
     margin-right: 10px; /* Ajuste horizontal */
     margin-top: 0; /* Ajuste vertical */
-  }
+    min-width: 80px; /* Garantir largura mínima para alinhamento consistente */
+    text-align: right; /* Alinhar valores à direita */
+}
   
-  .custom-transaction-remove-button {
+.custom-transaction-remove-button {
     background: none;
     border: none;
     color: white;
     cursor: pointer;
     font-family: Helvetica;
     font-size: 14px; /* Ajuste o tamanho do botão "X" */
-    margin-left: 10px; /* Ajuste horizontal */
-    margin-top: 0; /* Ajuste vertical */
-  }
-  
+}

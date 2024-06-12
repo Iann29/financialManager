@@ -57,12 +57,16 @@ const TransactionList = ({ transacoes, categorias, onRemove }) => {
               <img src={iconMap[getCategoriaIcone(transacao.categoria_id)] || defaultIcon} alt="icon" />
             </div>
             <div className="custom-transaction-info">
-              <span className="custom-transaction-category">
-                {getCategoriaNome(transacao.categoria_id)}
-              </span>
-              <span className="custom-transaction-description">{transacao.descricao}</span>
-              <span className="custom-transaction-value">{transacao.valor}</span>
-              <button className="custom-transaction-remove-button" onClick={() => onRemove(transacao.id)}>X</button>
+              <div className="custom-transaction-details">
+                <span className="custom-transaction-category">
+                  {getCategoriaNome(transacao.categoria_id)}
+                </span>
+                <span className="custom-transaction-description">{transacao.descricao}</span>
+              </div>
+              <div className="custom-transaction-value-container">
+                <span className="custom-transaction-value">{transacao.valor}</span>
+                <button className="custom-transaction-remove-button" onClick={() => onRemove(transacao.id)}>X</button>
+              </div>
             </div>
           </li>
         ))}
