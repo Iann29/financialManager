@@ -1,4 +1,4 @@
-# Gerenciador Financeiro - [Sem Nome Definido]
+# Gerenciador Financeiro - financialManager
 
 ## Descrição
 Este é um sistema de gerenciamento financeiro desenvolvido no curso de Ciência da Computação da UPF. O sistema permite aos usuários gerenciar suas finanças pessoais de maneira eficiente, adicionando despesas e receitas mensais. Ele oferece a capacidade de organizar transações financeiras por categorias e inclui um design intuitivo e simples para facilitar o uso.
