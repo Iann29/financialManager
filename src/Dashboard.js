@@ -176,21 +176,11 @@ const Dashboard = () => {
     }
   };
 
-  const formatDate = (date) => {
-    const daysOfWeek = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
-    const months = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
-    const dayOfWeek = daysOfWeek[date.getDay()];
-    const day = date.getDate();
-    const month = months[date.getMonth()];
-
-    return `${day} de ${month} (${dayOfWeek})`;
-  };
-
   const currentMonthName = getMonthName(new Date().getMonth());
 
   // Agrupa as transações por data
   const transacoesPorData = transacoes.reduce((acc, transacao) => {
-    const data = new Date(transacao.data).toLocaleDateString();
+    const data = new Date(transacao.data).toLocaleDateString('pt-BR');
     if (!acc[data]) {
       acc[data] = [];
     }
@@ -199,7 +189,11 @@ const Dashboard = () => {
   }, {});
 
   // Ordena as chaves (datas) em ordem decrescente
-  const datasOrdenadas = Object.keys(transacoesPorData).sort((a, b) => new Date(b.split('/').reverse().join('-')) - new Date(a.split('/').reverse().join('-')));
+  const datasOrdenadas = Object.keys(transacoesPorData).sort((a, b) => {
+    const [diaA, mesA, anoA] = a.split('/');
+    const [diaB, mesB, anoB] = b.split('/');
+    return new Date(`${anoB}-${mesB}-${diaB}`) - new Date(`${anoA}-${mesA}-${diaA}`);
+  });
 
   return (
     <div className="dashboard-container">
@@ -246,7 +240,7 @@ const Dashboard = () => {
       </Modal>
       <div className="chart-container">
         <div className="saldo-mes">
-          Saldo de {getMonthName(new Date().getMonth())}
+          Saldo de {currentMonthName}
         </div>
         <div className="chart-line"></div>
         <div className="chart-wrapper">

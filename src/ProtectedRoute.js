@@ -13,7 +13,7 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
   }, [user, isLoading]);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Ou algum outro indicador de carregamento
+    return <div>Loading...</div>; 
   }
 
   if (!user) {

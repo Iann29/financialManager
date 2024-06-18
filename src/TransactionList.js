@@ -76,7 +76,7 @@ const TransactionList = ({ transacoes, categorias, onRemove }) => {
   };
 
   const isReceita = (categoriaNome) => {
-    return categoriaNome === 'Salário' || categoriaNome === 'Bônus';
+    return ['Salário', 'Bônus', 'Investimentos'].includes(categoriaNome);
   };
 
   return (

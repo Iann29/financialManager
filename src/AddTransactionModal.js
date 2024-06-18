@@ -1,6 +1,6 @@
 import React from 'react';
 import './AddTransactionModal.css';
-import AddTransaction from './AddTransaction'; // Import AddTransaction component
+import AddTransaction from './AddTransaction'; 
 
 const AddTransactionModal = ({ show, onClose, categorias, userId, onAdd, onCreateCategory }) => {
   if (!show) {

@@ -204,7 +204,7 @@
 .saldo-transacoes-container {
   width: 919.728px;
   background: #26273B;
-  margin: 34px auto; /* Adiciona o espaçamento de 34 pixels */
+  margin: 34px auto;
   position: relative; 
   padding-top: 30px; 
 }
@@ -303,7 +303,7 @@
 
 .transacoes-title-container {
   position: absolute;
-  top: 455px; /* Ajuste conforme necessário */
+  top: 455px; 
   left: -340px;
   width: 100%;
   text-align: center;

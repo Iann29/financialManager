@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from './Modal'; // Supondo que você tem um componente Modal genérico
+import Modal from './Modal'; 
 
 const OTPModal = ({ show, onClose, otpData, setOtpData, onSubmit }) => {
   const handleChange = (e) => {

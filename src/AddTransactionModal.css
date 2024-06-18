@@ -12,10 +12,10 @@
   }
   
   .add-transaction-modal-content {
-    padding: 0; /* Remove padding to match the AddTransaction styles */
+    padding: 0;
     border-radius: 21px;
-    width: auto; /* Ensure it takes the width of its content */
-    background: none; /* Remove background to let AddTransaction component style take over */
+    width: auto; 
+    background: none;
     position: relative;
   }
   

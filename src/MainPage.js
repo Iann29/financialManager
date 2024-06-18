@@ -7,7 +7,7 @@ function MainPage() {
     <div className="main-container">
       <Link to="/login">Login</Link>
       <Link to="/register">Registrar</Link>
-      {/* Conteúdo da página */}
+      {}
     </div>
   );
 }

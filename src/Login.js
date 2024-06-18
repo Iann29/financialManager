@@ -6,7 +6,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import HTMLWrapper from './HTMLWrapper';
-import OTPModal from './OTPModal'; // Importe o componente do modal OTP
+import OTPModal from './OTPModal'; 
 
 const Login = () => {
   const [formData, setFormData] = useState({

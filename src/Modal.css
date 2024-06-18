@@ -17,7 +17,7 @@
   width: 80%;
   max-width: 500px;
   position: relative;
-  background: none; /* Alterado para remover o fundo branco */
+  background: none; 
 }
 
 .modal-close {
