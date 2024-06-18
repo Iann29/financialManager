@@ -188,6 +188,19 @@ const Dashboard = () => {
 
   const currentMonthName = getMonthName(new Date().getMonth());
 
+  // Agrupa as transações por data
+  const transacoesPorData = transacoes.reduce((acc, transacao) => {
+    const data = new Date(transacao.data).toLocaleDateString();
+    if (!acc[data]) {
+      acc[data] = [];
+    }
+    acc[data].push(transacao);
+    return acc;
+  }, {});
+
+  // Ordena as chaves (datas) em ordem decrescente
+  const datasOrdenadas = Object.keys(transacoesPorData).sort((a, b) => new Date(b.split('/').reverse().join('-')) - new Date(a.split('/').reverse().join('-')));
+
   return (
     <div className="dashboard-container">
       <button onClick={() => setShowModal(true)} className="add-button">
@@ -263,32 +276,36 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="transacoes-title-container">
-        <h2 className="transacoes-title">Transações de {currentMonthName}</h2>
-      </div>
-      <div className="saldo-transacoes-container">
-        <div className="saldo-mensal">
-          <div className="data-transacao-day">
-            {formatDate(new Date())}
-          </div>
-          <div className="saldo-gastos-ganhos">
-            {saldoMensal.receita > 0 && (
-              <div className="saldo-ganhos">
-                <span className="ganhos-label">Ganhos: </span>
-                <span className="ganhos-value">{saldoMensal.receita}</span>
+      {datasOrdenadas.map((data) => {
+        const receitaData = transacoesPorData[data].filter(t => t.tipo === 'Receita').reduce((acc, t) => acc + parseFloat(t.valor), 0);
+        const despesaData = transacoesPorData[data].filter(t => t.tipo === 'Despesa').reduce((acc, t) => acc + parseFloat(t.valor), 0);
+
+        return (
+          <div key={data} className="saldo-transacoes-container">
+            <div className="saldo-mensal">
+              <div className="data-transacao-day">
+                {data}
               </div>
-            )}
-            {saldoMensal.despesa > 0 && (
-              <div className="saldo-gastos">
-                <span className="gastos-label">Gastos: </span>
-                <span className="gastos-value">{saldoMensal.despesa}</span>
+              <div className="saldo-gastos-ganhos">
+                {receitaData > 0 && (
+                  <div className="saldo-ganhos">
+                    <span className="ganhos-label">Ganhos: </span>
+                    <span className="ganhos-value">{receitaData.toFixed(2)}</span>
+                  </div>
+                )}
+                {despesaData > 0 && (
+                  <div className="saldo-gastos">
+                    <span className="gastos-label">Gastos: </span>
+                    <span className="gastos-value">{despesaData.toFixed(2)}</span>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
+            <div className="saldo-line"></div>
+            <TransactionList transacoes={transacoesPorData[data]} categorias={categorias} onRemove={handleRemoveTransaction} />
           </div>
-        </div>
-        <div className="saldo-line"></div>
-        <TransactionList transacoes={transacoes} categorias={categorias} onRemove={handleRemoveTransaction} />
-      </div>
+        );
+      })}
     </div>
   );
 };

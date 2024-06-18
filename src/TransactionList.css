@@ -19,7 +19,7 @@
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
-  margin-left: 25px; /* Adiciona espaço à esquerda dos ícones */
+  margin-left: 25px;
 }
 
 .custom-transaction-icon img {
