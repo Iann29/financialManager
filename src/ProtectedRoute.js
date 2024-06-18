@@ -4,7 +4,11 @@ import { useAuth } from './AuthContext';
 import { toast } from 'react-toastify';
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (!user) {
     toast.error('Você precisa estar logado para acessar esta página.');
