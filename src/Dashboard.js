@@ -9,6 +9,7 @@ import Modal from './Modal';
 import customerIcon from './icon/Person_ico.png';
 import addIcon from './icon/add.png';
 import './Dashboard.css';
+import QRCode from 'qrcode.react';
 
 const getMonthName = (monthIndex) => {
   const months = [
@@ -24,6 +25,7 @@ const Dashboard = () => {
   const [saldoMensal, setSaldoMensal] = useState({ receita: 0, despesa: 0 });
   const [showModal, setShowModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [otpSecret, setOtpSecret] = useState('');
   const { user, logout } = useAuth();
 
   const fetchCategorias = useCallback(async () => {
@@ -122,6 +124,32 @@ const Dashboard = () => {
     }
   };
 
+  const handleGenerateOTP = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/generate-otp/${user.id}`);
+      const result = await response.json();
+      setOtpSecret(result.otpSecret);
+    } catch (err) {
+      console.error('Erro ao gerar OTP:', err);
+    }
+  };
+
+  const handleRemoveOTP = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/remove-otp/${user.id}`, {
+        method: 'POST',
+      });
+      if (response.ok) {
+        setOtpSecret('');
+        alert('Autenticador OTP removido com sucesso.');
+      } else {
+        alert('Erro ao remover o autenticador OTP.');
+      }
+    } catch (err) {
+      console.error('Erro ao remover OTP:', err);
+    }
+  };
+
   const formatDate = (date) => {
     const daysOfWeek = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
     const months = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
@@ -152,6 +180,16 @@ const Dashboard = () => {
           <h2>Perfil</h2>
           <button onClick={handleDeleteAccount} className="delete-account-button">Excluir conta</button>
           <button onClick={logout} className="logout-button">Sair</button>
+          <button onClick={handleGenerateOTP} className="generate-otp-button">Gerar OTP</button>
+          {otpSecret && (
+            <>
+              <div className="otp-qr-code">
+                <QRCode value={`otpauth://totp/FinancialManager:${user.email}?secret=${otpSecret}&issuer=FinancialManager`} />
+                <p>Escaneie o QR Code com seu aplicativo autenticador.</p>
+              </div>
+              <button onClick={handleRemoveOTP} className="remove-otp-button">Remover OTP</button>
+            </>
+          )}
         </div>
       </Modal>
       <div className="chart-container">

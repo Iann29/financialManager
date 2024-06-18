@@ -1,6 +1,8 @@
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
+const speakeasy = require('speakeasy');
+const QRCode = require('qrcode');
 
 const app = express();
 app.use(cors());
@@ -115,16 +117,29 @@ const addDefaultCategoriesForUser = async (userId) => {
 };
 
 app.post('/login', async (req, res) => {
-    const { email, senha } = req.body;
+    const { email, senha, otp } = req.body;
     try {
         console.log('Dados recebidos para login:', req.body);
-        const user = await pool.query(
+        const userResult = await pool.query(
             'SELECT * FROM usuario WHERE email = $1 AND senha = $2',
             [email, senha]
         );
-        if (user.rows.length > 0) {
-            console.log('Login bem-sucedido para o usuário:', user.rows[0]);
-            res.json(user.rows[0]);
+        const user = userResult.rows[0];
+        if (user) {
+            if (user.otp_secret) {
+                const verified = speakeasy.totp.verify({
+                    secret: user.otp_secret,
+                    encoding: 'base32',
+                    token: otp
+                });
+
+                if (!verified) {
+                    return res.status(401).send('Código OTP inválido');
+                }
+            }
+
+            console.log('Login bem-sucedido para o usuário:', user);
+            res.json(user);
         } else {
             console.log('Credenciais inválidas para o usuário:', email);
             res.status(401).send('Credenciais inválidas');
@@ -133,6 +148,50 @@ app.post('/login', async (req, res) => {
         console.error('Erro no login:', err.message);
         res.status(500).send('Erro no servidor');
     }
+});
+
+// Rota para gerar o QR code para OTP
+app.post('/generate-otp', async (req, res) => {
+    const { userId } = req.body;
+    const secret = speakeasy.generateSecret({ length: 20 });
+
+    await pool.query(
+        'UPDATE usuario SET otp_secret = $1 WHERE id = $2',
+        [secret.base32, userId]
+    );
+
+    QRCode.toDataURL(secret.otpauth_url, (err, data_url) => {
+        if (err) {
+            console.error('Erro ao gerar QR code:', err.message);
+            return res.status(500).send('Erro ao gerar QR code');
+        }
+        res.json({ data_url });
+    });
+});
+
+// Rota para verificar o OTP
+app.post('/verify-otp', (req, res) => {
+    const { userId, token } = req.body;
+
+    pool.query('SELECT otp_secret FROM usuario WHERE id = $1', [userId], (err, result) => {
+        if (err) {
+            console.error('Erro ao verificar OTP:', err.message);
+            return res.status(500).send('Erro ao verificar OTP');
+        }
+
+        const secret = result.rows[0].otp_secret;
+        const verified = speakeasy.totp.verify({
+            secret: secret,
+            encoding: 'base32',
+            token: token
+        });
+
+        if (verified) {
+            res.send('Código OTP verificado com sucesso');
+        } else {
+            res.status(401).send('Código OTP inválido');
+        }
+    });
 });
 
 // Rotas para categorias
@@ -247,9 +306,9 @@ const resetDatabase = async () => {
         `;
         
         const createTables = `
-            CREATE SEQUENCE IF NOT EXISTS usuario_id_seq;
-            CREATE SEQUENCE IF NOT EXISTS categoria_id_seq;
-            CREATE SEQUENCE IF NOT EXISTS lancamento_id_seq;
+            CREATE SEQUENCE IF NOT EXISTS usuario_id_seq START 1;
+            CREATE SEQUENCE IF NOT EXISTS categoria_id_seq START 1;
+            CREATE SEQUENCE IF NOT EXISTS lancamento_id_seq START 1;
 
             CREATE TABLE IF NOT EXISTS public.usuario (
                 id integer NOT NULL DEFAULT nextval('usuario_id_seq'::regclass),
@@ -258,6 +317,7 @@ const resetDatabase = async () => {
                 senha character varying(45) COLLATE pg_catalog."default" NOT NULL,
                 cpf character varying(11) COLLATE pg_catalog."default" NOT NULL,
                 telefone character varying(14) COLLATE pg_catalog."default" NOT NULL,
+                otp_secret character varying(255) COLLATE pg_catalog."default",
                 CONSTRAINT usuario_pkey PRIMARY KEY (id),
                 CONSTRAINT usuario_cpf_key UNIQUE (cpf)
             );
@@ -301,12 +361,40 @@ const resetDatabase = async () => {
             GRANT USAGE, SELECT, UPDATE ON SEQUENCE usuario_id_seq TO financial_user;
             GRANT USAGE, SELECT, UPDATE ON SEQUENCE categoria_id_seq TO financial_user;
             GRANT USAGE, SELECT, UPDATE ON SEQUENCE lancamento_id_seq TO financial_user;
+
+            -- Reseta as sequências para 1
+            ALTER SEQUENCE usuario_id_seq RESTART WITH 1;
+            ALTER SEQUENCE categoria_id_seq RESTART WITH 1;
+            ALTER SEQUENCE lancamento_id_seq RESTART WITH 1;
         `;
 
         await adminPool.query(dropTables);
         await adminPool.query(createTables);
 
         console.log('Banco de dados resetado com sucesso.');
+
+        const verifyReset = async () => {
+            try {
+                const usuarioCount = await adminPool.query('SELECT COUNT(*) FROM usuario');
+                const categoriaCount = await adminPool.query('SELECT COUNT(*) FROM categoria');
+                const lancamentoCount = await adminPool.query('SELECT COUNT(*) FROM lancamento');
+                const usuarioSeq = await adminPool.query("SELECT last_value FROM usuario_id_seq");
+                const categoriaSeq = await adminPool.query("SELECT last_value FROM categoria_id_seq");
+                const lancamentoSeq = await adminPool.query("SELECT last_value FROM lancamento_id_seq");
+
+                console.log(`Verificação pós-reset:
+                Usuários: ${usuarioCount.rows[0].count}
+                Categorias: ${categoriaCount.rows[0].count}
+                Lançamentos: ${lancamentoCount.rows[0].count}
+                Sequência de Usuário: ${usuarioSeq.rows[0].last_value}
+                Sequência de Categoria: ${categoriaSeq.rows[0].last_value}
+                Sequência de Lançamento: ${lancamentoSeq.rows[0].last_value}`);
+            } catch (err) {
+                console.error('Erro na verificação pós-reset:', err.message);
+            }
+        };
+
+        await verifyReset();
     } catch (err) {
         console.error('Erro ao resetar banco de dados:', err.message);
     }

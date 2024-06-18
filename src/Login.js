@@ -6,6 +6,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import HTMLWrapper from './HTMLWrapper';
+import OTPModal from './OTPModal'; // Importe o componente do modal OTP
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,12 @@ const Login = () => {
   });
 
   const [message, setMessage] = useState('');
+  const [showOTPModal, setShowOTPModal] = useState(false);
+  const [otpData, setOtpData] = useState({
+    email: '',
+    otp: ''
+  });
+
   const navigate = useNavigate();
   const { login } = useAuth();  
 
@@ -25,13 +32,34 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:5000/login', formData);
-      console.log(res.data);
-      setMessage('Login bem-sucedido');
-      login(res.data); 
-      navigate('/dashboard');  
+      if (res.data.otpRequired) {
+        setOtpData({ email: formData.email, otp: '' });
+        setShowOTPModal(true);
+      } else {
+        setMessage('Login bem-sucedido');
+        login(res.data); 
+        navigate('/dashboard');  
+      }
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);
       setMessage('Erro ao fazer login. Verifique seus dados.');
+    }
+  };
+
+  const handleOTPSubmit = async () => {
+    try {
+      const res = await axios.post('http://localhost:5000/verify-otp', otpData);
+      if (res.data.success) {
+        setMessage('Login bem-sucedido');
+        login(res.data.user);
+        navigate('/dashboard');
+        setShowOTPModal(false);
+      } else {
+        setMessage('Código OTP incorreto');
+      }
+    } catch (err) {
+      console.error(err.response ? err.response.data : err.message);
+      setMessage('Erro ao verificar o código OTP.');
     }
   };
 
@@ -89,6 +117,15 @@ const Login = () => {
           {message && <p className={`message ${message === 'Login bem-sucedido' ? 'success-message' : 'error-message'}`}>{message}</p>}
         </div>
       </div>
+      {showOTPModal && (
+        <OTPModal
+          show={showOTPModal}
+          onClose={() => setShowOTPModal(false)}
+          otpData={otpData}
+          setOtpData={setOtpData}
+          onSubmit={handleOTPSubmit}
+        />
+      )}
     </HTMLWrapper>
   );
 };
