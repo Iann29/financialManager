@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import { toast } from 'react-toastify';
@@ -6,12 +6,17 @@ import { toast } from 'react-toastify';
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const { user, isLoading } = useAuth();
 
+  useEffect(() => {
+    if (!isLoading && !user) {
+      toast.error('Você precisa estar logado para acessar esta página.');
+    }
+  }, [user, isLoading]);
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Ou algum outro indicador de carregamento
   }
 
   if (!user) {
-    toast.error('Você precisa estar logado para acessar esta página.');
     return <Navigate to="/login" />;
   }
 
