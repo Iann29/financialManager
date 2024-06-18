@@ -24,6 +24,17 @@
   justify-content: center;
 }
 
+.logout-button {
+  background-color: #FF0000;
+  color: #FFF;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+
 .add-button svg {
   position: absolute;
   width: 100%;

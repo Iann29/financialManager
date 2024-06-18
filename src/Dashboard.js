@@ -24,7 +24,7 @@ const Dashboard = () => {
   const [saldoMensal, setSaldoMensal] = useState({ receita: 0, despesa: 0 });
   const [showModal, setShowModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const fetchCategorias = useCallback(async () => {
     try {
@@ -102,8 +102,6 @@ const Dashboard = () => {
     }
   };
 
-  const { logout } = useAuth();
-
   const handleDeleteAccount = async () => {
     const confirmDelete = window.confirm("Tem certeza que deseja excluir sua conta?");
     if (confirmDelete) {
@@ -153,6 +151,7 @@ const Dashboard = () => {
         <div className="profile-modal-content">
           <h2>Perfil</h2>
           <button onClick={handleDeleteAccount} className="delete-account-button">Excluir conta</button>
+          <button onClick={logout} className="logout-button">Sair</button>
         </div>
       </Modal>
       <div className="chart-container">
