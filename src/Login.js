@@ -83,7 +83,7 @@ const Login = () => {
             <div className="background-rectangle">
               <form onSubmit={onSubmit} className="login-form">
                 <h2 className="login-title">INICIAR SESSÃO</h2>
-                <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
+                <div className="input-group" style={{ '--x': '-0px', '--y': '4px' }}>
                   <span className="input-icon email"></span>
                   <input
                     type="email"
@@ -95,7 +95,7 @@ const Login = () => {
                     className="login-input"
                   />
                 </div>
-                <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
+                <div className="input-group" style={{ '--x': '-0px', '--y': '4px' }}>
                   <span className="input-icon senha"></span>
                   <input
                     type="password"

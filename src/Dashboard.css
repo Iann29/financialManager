@@ -69,6 +69,28 @@
   height: 30px;
 }
 
+.category-button {
+  position: fixed;
+  bottom: 730px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  background: #26273B;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-icon {
+  width: 30px;
+  height: 30px;
+}
+
 .chart-container {
   width: 919.728px;
   height: 395.292px;
@@ -278,3 +300,21 @@
   height: 256px;
   margin: 20px;
 }
+
+.transacoes-title-container {
+  position: absolute;
+  top: 455px; /* Ajuste conforme necessário */
+  left: -340px;
+  width: 100%;
+  text-align: center;
+}
+
+.transacoes-title {
+  color: #FFF;
+  font-family: Helvetica;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+

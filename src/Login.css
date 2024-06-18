@@ -116,8 +116,8 @@
 
 .login-page .login-form .input-icon { 
   position: absolute;
-  left: 15px; 
-  top: 50%;
+  left: -10px; 
+  top: 53%;
   transform: translateY(-50%);
   width: 23.109px; 
   height: 25.161px;

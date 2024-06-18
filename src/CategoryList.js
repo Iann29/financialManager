@@ -71,7 +71,7 @@ const CategoryList = ({ categorias, onRemove }) => {
             <div className={`category-icon ${getCategoryClass(categoria.nome)}`}>
               <img src={getCategoriaIcone(categoria.icon)} alt="icon" />
             </div>
-            {categoria.nome} ({categoria.tipo})
+            {categoria.nome}
             <button onClick={() => handleRemove(categoria.id)}>Remover</button>
           </li>
         ))}

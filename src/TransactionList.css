@@ -93,10 +93,11 @@
 }
 
 .modal-content {
-  background: white;
+  background: #1D1D31;
   padding: 20px;
   border-radius: 5px;
   text-align: center;
+  color: white;
 }
 
 .modal-content button {

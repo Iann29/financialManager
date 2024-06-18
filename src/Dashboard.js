@@ -6,12 +6,12 @@ import PieChartComponent from './PieChartComponent';
 import { useAuth } from './AuthContext';
 import customerIcon from './icon/Person_ico.png';
 import addIcon from './icon/add.png';
+import categoryIcon from './icon/category.png';
 import './Dashboard.css';
 import QRCode from 'qrcode.react';
-import AddTransactionModal from './AddTransactionModal'; // Import AddTransactionModal
-import Modal from './Modal'; // Importar o componente Modal
+import AddTransactionModal from './AddTransactionModal';
+import Modal from './Modal';
 
-// Definição da função getMonthName
 const getMonthName = (monthIndex) => {
   const months = [
     'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
@@ -27,6 +27,7 @@ const Dashboard = () => {
   const [showModal, setShowModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [otpSecret, setOtpSecret] = useState('');
   const { user, logout } = useAuth();
 
@@ -185,6 +186,8 @@ const Dashboard = () => {
     return `${day} de ${month} (${dayOfWeek})`;
   };
 
+  const currentMonthName = getMonthName(new Date().getMonth());
+
   return (
     <div className="dashboard-container">
       <button onClick={() => setShowModal(true)} className="add-button">
@@ -195,6 +198,9 @@ const Dashboard = () => {
       </button>
       <button onClick={() => setShowProfileModal(true)} className="profile-button">
         <img src={customerIcon} alt="Profile Icon" className="profile-icon" />
+      </button>
+      <button onClick={() => setShowCategoryModal(true)} className="category-button">
+        <img src={categoryIcon} alt="Categorias" className="category-icon" />
       </button>
       <AddTransactionModal
         show={showModal}
@@ -221,6 +227,9 @@ const Dashboard = () => {
             </div>
           )}
         </div>
+      </Modal>
+      <Modal show={showCategoryModal} onClose={() => setShowCategoryModal(false)}>
+        <CategoryList categorias={categorias} onRemove={handleRemoveCategory} />
       </Modal>
       <div className="chart-container">
         <div className="saldo-mes">
@@ -254,6 +263,9 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <div className="transacoes-title-container">
+        <h2 className="transacoes-title">Transações de {currentMonthName}</h2>
+      </div>
       <div className="saldo-transacoes-container">
         <div className="saldo-mensal">
           <div className="data-transacao-day">
@@ -277,7 +289,6 @@ const Dashboard = () => {
         <div className="saldo-line"></div>
         <TransactionList transacoes={transacoes} categorias={categorias} onRemove={handleRemoveTransaction} />
       </div>
-      <CategoryList categorias={categorias} onRemove={handleRemoveCategory} />
     </div>
   );
 };
