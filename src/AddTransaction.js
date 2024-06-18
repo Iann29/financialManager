@@ -8,6 +8,10 @@ const AddTransaction = ({ categorias, userId, onAdd, onCreateCategory }) => {
   const [valor, setValor] = useState('');
   const [categoriaId, setCategoriaId] = useState(categorias.length > 0 ? categorias[0].id : '');
 
+  const handleTipoToggle = () => {
+    setTipo(tipo === 'Despesa' ? 'Receita' : 'Despesa');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -74,15 +78,9 @@ const AddTransaction = ({ categorias, userId, onAdd, onCreateCategory }) => {
           />
         </div>
         <div className="input-group">
-          <select
-            value={tipo}
-            onChange={(e) => setTipo(e.target.value)}
-            required
-            className="add-transaction-select"
-          >
-            <option value="Despesa">Despesa</option>
-            <option value="Receita">Receita</option>
-          </select>
+          <button type="button" onClick={handleTipoToggle} className={`toggle-button ${tipo.toLowerCase()}`}>
+            {tipo}
+          </button>
         </div>
         <div className="input-group">
           <input
