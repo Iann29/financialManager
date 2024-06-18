@@ -22,8 +22,29 @@ const Register = () => {
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[A-Z]).{8,}$/;
+    return regex.test(password);
+  };
+
+  const validateCPF = (cpf) => {
+    const regex = /^\d{11}$/;
+    return regex.test(cpf);
+  };
+
   const onSubmit = async e => {
     e.preventDefault();
+
+    if (!validatePassword(senha)) {
+      setMessage('A senha deve ter no mínimo 8 dígitos e pelo menos uma letra maiúscula.');
+      return;
+    }
+
+    if (!validateCPF(cpf)) {
+      setMessage('O CPF deve ter exatamente 11 números.');
+      return;
+    }
+
     try {
       const res = await axios.post('http://localhost:5000/register', formData);
       console.log(res.data);

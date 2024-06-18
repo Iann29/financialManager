@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
+import HTMLWrapper from './HTMLWrapper';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -34,37 +35,61 @@ const Login = () => {
     }
   };
 
+  const handleRegisterRedirect = () => {
+    navigate('/register'); 
+  };
+
   return (
-    <>
-      <div className="login-container">
-        <div className="icon-container-login">
-          <FontAwesomeIcon icon={faUser} className="icon" />
+    <HTMLWrapper>
+      <div className="login-page">
+        <div className="illumination top-left"></div>
+        <div className="illumination bottom-right"></div>
+        <div className="page-container">
+          <div className="icon-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="61" viewBox="0 0 60 61" fill="none">
+              <circle cx="30" cy="30.9854" r="30" fill="#26273B"/>
+            </svg>
+            <FontAwesomeIcon icon={faUser} className="icon" />
+          </div>
+          <div className="login-container">
+            <div className="background-rectangle">
+              <form onSubmit={onSubmit} className="login-form">
+                <h2 className="login-title">INICIAR SESSÃO</h2>
+                <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
+                  <span className="input-icon email"></span>
+                  <input
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={onChange}
+                    placeholder="E-mail"
+                    required
+                    className="login-input"
+                  />
+                </div>
+                <div className="input-group" style={{ '--x': '-26px', '--y': '4px' }}>
+                  <span className="input-icon senha"></span>
+                  <input
+                    type="password"
+                    name="senha"
+                    value={senha}
+                    onChange={onChange}
+                    placeholder="Senha"
+                    required
+                    className="login-input"
+                  />
+                </div>
+                <button type="submit" className="login-button">Entrar</button>
+              </form>
+              <div className="need-account">
+                Não possui uma conta? <button onClick={handleRegisterRedirect} className="need-account-button">Registrar</button>
+              </div>
+            </div>
+          </div>
+          {message && <p className={`message ${message === 'Login bem-sucedido' ? 'success-message' : 'error-message'}`}>{message}</p>}
         </div>
-        <form onSubmit={onSubmit} className="login-form">
-          <h2 className="login-title">INICIAR SESSÃO</h2>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={onChange}
-            placeholder="Endereço de e-mail"
-            required
-            className="login-input"
-          />
-          <input
-            type="password"
-            name="senha"
-            value={senha}
-            onChange={onChange}
-            placeholder="Senha"
-            required
-            className="login-input"
-          />
-          <button type="submit" className="login-button">Entrar</button>
-        </form>
-        {message && <p className={`message ${message === 'Login bem-sucedido' ? 'success-message' : 'error-message'}`}>{message}</p>}
       </div>
-    </>
+    </HTMLWrapper>
   );
 };
 

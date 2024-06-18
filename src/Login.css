@@ -1,80 +1,193 @@
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 
-.login-container {
+.login-page { 
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: 'Lilita One', cursive;
-  position: relative; 
-  z-index: 2; 
+  margin: 0;
+  background-color: #1B1B25;
+  overflow: hidden;
+  position: relative;
 }
 
-.login-form {
-  width: 366px;
-  height: 323px;
-  flex-shrink: 0;
+.login-page .illumination { 
+  position: absolute;
+  width: 225.773px; 
+  height: 167.743px; 
+  background-color: #FA06FF;
+  filter: blur(115px); 
+  z-index: 0;
+}
+
+.login-page .top-left {
+  top: -50px; 
+  left: -50px; 
+}
+
+.login-page .bottom-right {
+  bottom: -50px; 
+  right: -50px; 
+}
+
+.login-page .login-container { 
+  width: 569.818px; 
+  height: 420.397px; 
   border-radius: 34px;
-  background: #26273B;
+  border: 1px solid #26273B;
+  background: linear-gradient(111deg, rgba(38, 39, 59, 0.29) 0%, rgba(104, 106, 161, 0.16) 100%);
+  box-shadow: 0px 6px 5.8px rgba(0, 0, 0, 0.25);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  box-sizing: border-box;
-  box-shadow: 0px 6px 5.8px 0px rgba(0, 0, 0, 0.25);
-  z-index: 3;
+  position: relative;
+  z-index: 1;
 }
 
-.login-title {
-  color: #fff;
-  margin-bottom: 20px;
-  font-weight: 400;
-}
-
-.login-input {
-  width: 75%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 20px;
-  border: none;
-  outline: none;
-}
-
-.login-button {
-  width: 138px;
-  padding: 10px;
-  margin: 30px 0;
-  border-radius: 21px;
-  border: solid;
-  border-color: #280F2F;
-  background: #ffffff00;
-  color: #ffffff;
-  cursor: pointer;
-  font-family: 'Lilita One', cursive;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  margin-top: auto;
-}
-
-.icon-container-login {
-  position: absolute;
-  top: 90px; 
-  background: #26273B;
-  border-radius: 50%;
-  padding: 20px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.icon {
-  font-size: 24px;
-  color: #fff;
-}
-
-.success-message {
-  color: #4CAF50;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 15px;
-  font-size: 25px;
+.login-page .login-title {
+  color: #FFF;
   text-align: center;
+  font-family: "Lilita One";
+  font-size: 36px; /* Aumentei o tamanho da fonte */
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: -20px; 
+}
+
+.login-page .page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.login-page .icon-container {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  margin-bottom: 30px;
+  margin-top: -60px;
+}
+
+.login-page .icon-container svg, 
+.login-page .icon {
+  position: absolute;
+  color: #FFF;
+  font-size: 30px;
+}
+
+.login-page .login-form { 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-page .login-form .input-group { 
+  --x: 0px;
+  --y: 0px;
+  position: relative;
+  width: 419.046px; 
+  height: 52px; 
+  margin-bottom: 16px; 
+  transform: translate(var(--x), var(--y));
+}
+
+.login-page .login-form .login-input { 
+  width: 100%;
+  height: 100%;
+  padding-left: 50px; 
+  border-radius: 15px;
+  border: 0.5px solid rgba(255, 255, 255, 0.30);
+  background: #1B1B25;
+  color: #666;
+  font-family: "Source Serif Pro";
+  font-size: 20px;
+  line-height: normal;
+  text-align: left; 
+}
+
+.login-page .login-form .input-icon { 
+  position: absolute;
+  left: 15px; 
+  top: 50%;
+  transform: translateY(-50%);
+  width: 23.109px; 
+  height: 25.161px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.login-page .login-form .input-icon.email {
+  background-image: url('./icon/email_ico.png');
+}
+
+.login-page .login-form .input-icon.senha {
+  background-image: url('./icon/lock_ico.png');
+}
+
+.login-page .login-button {
+  width: 354.098px; 
+  height: 54.656px; 
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 0.5px solid rgba(255, 255, 255, 0.30);
+  background: linear-gradient(91deg, rgba(0, 255, 10, 0.63) 0%, rgba(0, 153, 6, 0.36) 100%);
+  color: #FFF;
+  text-align: center;
+  font-family: "Sulphur Point";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; 
+}
+
+.login-page .success-message { 
+  width: 249px;
+  height: 16px;
+  flex-shrink: 0;
+  color: #00FF38;
+  text-align: center;
+  font-family: "Sulphur Point";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 20px; 
+}
+
+.login-page .need-account { 
+  margin-top: 20px;
+  text-align: center;
+  color: #FFF;
+  font-family: "Sulphur Point";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.login-page .need-account-button { 
+  background: none;
+  border: none;
+  color: #0057FF;
+  font-family: "Sulphur Point";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  text-decoration: underline;
 }
