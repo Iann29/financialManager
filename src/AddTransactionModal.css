@@ -1,0 +1,32 @@
+.add-transaction-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .add-transaction-modal-content {
+    padding: 0; /* Remove padding to match the AddTransaction styles */
+    border-radius: 21px;
+    width: auto; /* Ensure it takes the width of its content */
+    background: none; /* Remove background to let AddTransaction component style take over */
+    position: relative;
+  }
+  
+  .add-transaction-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+  }
+  

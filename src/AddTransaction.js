@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import './AddTransaction.css';
 
-const AddTransaction = ({ categorias, userId, onAdd }) => {
+const AddTransaction = ({ categorias, userId, onAdd, onCreateCategory }) => {
   const [descricao, setDescricao] = useState('');
   const [tipo, setTipo] = useState('Despesa');
   const [data, setData] = useState('');
@@ -47,41 +48,71 @@ const AddTransaction = ({ categorias, userId, onAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Adicionar Lançamento</h2>
-      <input
-        type="text"
-        placeholder="Descrição"
-        value={descricao}
-        onChange={(e) => setDescricao(e.target.value)}
-        required
-      />
-      <select value={tipo} onChange={(e) => setTipo(e.target.value)} required>
-        <option value="Despesa">Despesa</option>
-        <option value="Receita">Receita</option>
-      </select>
-      <input
-        type="date"
-        value={data}
-        onChange={(e) => setData(e.target.value)}
-        required
-      />
-      <input
-        type="number"
-        placeholder="Valor"
-        value={valor}
-        onChange={(e) => setValor(e.target.value)}
-        required
-      />
-      <select value={categoriaId} onChange={(e) => setCategoriaId(e.target.value)} required>
-        {categorias.map((categoria) => (
-          <option key={categoria.id} value={categoria.id}>
-            {categoria.nome}
-          </option>
-        ))}
-      </select>
-      <button type="submit">Adicionar</button>
-    </form>
+    <div className="add-transaction-container">
+      <h2 className="add-transaction-title">CRIAR LANÇAMENTO</h2>
+      <form onSubmit={handleSubmit} className="add-transaction-form">
+        <div className="input-group">
+          <span className="input-icon valor"></span>
+          <input
+            type="number"
+            placeholder="Valor"
+            value={valor}
+            onChange={(e) => setValor(e.target.value)}
+            required
+            className="add-transaction-input"
+          />
+        </div>
+        <div className="input-group">
+          <span className="input-icon descricao"></span>
+          <input
+            type="text"
+            placeholder="Descrição"
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
+            required
+            className="add-transaction-input"
+          />
+        </div>
+        <div className="input-group">
+          <select
+            value={tipo}
+            onChange={(e) => setTipo(e.target.value)}
+            required
+            className="add-transaction-select"
+          >
+            <option value="Despesa">Despesa</option>
+            <option value="Receita">Receita</option>
+          </select>
+        </div>
+        <div className="input-group">
+          <input
+            type="date"
+            value={data}
+            onChange={(e) => setData(e.target.value)}
+            required
+            className="add-transaction-date"
+          />
+        </div>
+        <div className="input-group">
+          <select
+            value={categoriaId}
+            onChange={(e) => setCategoriaId(e.target.value)}
+            required
+            className="add-transaction-select"
+          >
+            {categorias.map((categoria) => (
+              <option key={categoria.id} value={categoria.id}>
+                {categoria.nome}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button type="submit" className="add-transaction-button">Adicionar Lançamento</button>
+      </form>
+      <button type="button" onClick={onCreateCategory} className="create-category-button">
+        Criar Categoria
+      </button>
+    </div>
   );
 };
 

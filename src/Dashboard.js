@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import AddCategory from './AddCategory';
 import CategoryList from './CategoryList';
-import AddTransaction from './AddTransaction';
 import TransactionList from './TransactionList';
 import PieChartComponent from './PieChartComponent';
 import { useAuth } from './AuthContext';
-import Modal from './Modal';
 import customerIcon from './icon/Person_ico.png';
 import addIcon from './icon/add.png';
 import './Dashboard.css';
 import QRCode from 'qrcode.react';
+import AddTransactionModal from './AddTransactionModal'; // Import AddTransactionModal
+import Modal from './Modal'; // Importar o componente Modal
 
+// Definição da função getMonthName
 const getMonthName = (monthIndex) => {
   const months = [
     'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
@@ -25,6 +26,7 @@ const Dashboard = () => {
   const [saldoMensal, setSaldoMensal] = useState({ receita: 0, despesa: 0 });
   const [showModal, setShowModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
   const [otpSecret, setOtpSecret] = useState('');
   const { user, logout } = useAuth();
 
@@ -87,6 +89,7 @@ const Dashboard = () => {
 
   const handleAddCategory = (novaCategoria) => {
     setCategorias([...categorias, novaCategoria]);
+    setShowAddCategoryModal(false);
   };
 
   const handleRemoveCategory = (id) => {
@@ -193,9 +196,16 @@ const Dashboard = () => {
       <button onClick={() => setShowProfileModal(true)} className="profile-button">
         <img src={customerIcon} alt="Profile Icon" className="profile-icon" />
       </button>
-      <Modal show={showModal} onClose={() => setShowModal(false)}>
+      <AddTransactionModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        categorias={categorias}
+        userId={user.id}
+        onAdd={handleAddTransaction}
+        onCreateCategory={() => setShowAddCategoryModal(true)}
+      />
+      <Modal show={showAddCategoryModal} onClose={() => setShowAddCategoryModal(false)}>
         <AddCategory onAdd={handleAddCategory} userId={user.id} />
-        <AddTransaction onAdd={handleAddTransaction} categorias={categorias} userId={user.id} />
       </Modal>
       <Modal show={showProfileModal} onClose={() => setShowProfileModal(false)}>
         <div className="profile-modal-content">

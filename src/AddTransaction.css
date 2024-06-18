@@ -1,0 +1,120 @@
+.add-transaction-container {
+    width: 742px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 21px;
+    background: #1D1D31;
+    box-shadow: 0px 0px 44.8px 6px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .add-transaction-title {
+    width: 100%;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: "Lilita One";
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 20px;
+    top: 20px;
+  }
+  
+  .add-transaction-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .input-group {
+    width: 80%;
+    position: relative;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .add-transaction-input {
+    width: 50%;
+    height: 52px;
+    padding-left: 50px;
+    border-radius: 15px;
+    border: 0.5px solid rgba(255, 255, 255, 0.30);
+    background: #1B1B25;
+    color: #666;
+    font-family: "Source Serif Pro";
+    font-size: 20px;
+    line-height: normal;
+    text-align: left;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 130px;
+    top: 52%;
+    transform: translateY(-50%);
+    width: 23.109px;
+    height: 25.161px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .input-icon.descricao {
+    background-image: url('./icon/description_ico.png');
+  }
+  
+  .input-icon.valor {
+    background-image: url('./icon/money_ico.png');
+  }
+  
+  .add-transaction-select,
+  .add-transaction-date {
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid #3D3D42;
+    background: #1B1B25;
+    color: white;
+    padding: 0 10px;
+    margin-bottom: -5px;
+  }
+  
+  .add-transaction-button,
+  .create-category-button {
+    width: 354.098px;
+    height: 54.656px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 0.5px solid rgba(255, 255, 255, 0.30);
+    background: linear-gradient(91deg, rgba(0, 255, 10, 0.63) 0%, rgba(0, 153, 6, 0.36) 100%);
+    color: #FFF;
+    text-align: center;
+    font-family: "Sulphur Point";
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .create-category-button {
+    background: #1B1B25;
+    border: 1px solid #3D3D42;
+    margin-left: 0;
+    font-size: 20px;
+    margin-top: 10px; /* Add margin-top to separate from the submit button */
+  }
+  
