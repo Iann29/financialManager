@@ -3,6 +3,7 @@ const { Pool } = require('pg');
 const cors = require('cors');
 const speakeasy = require('speakeasy');
 const QRCode = require('qrcode');
+const tinyurl = require('tinyurl');
 
 const app = express();
 app.use(cors());
@@ -17,10 +18,10 @@ const pool = new Pool({
 });
 
 const adminPool = new Pool({
-    user: 'postgres',  // Superusuário
+    user: 'postgres',
     host: '192.168.18.244',
     database: 'financialManager',
-    password: 'root',  // Atualize com a senha correta
+    password: 'root',
     port: 5432,
 });
 
@@ -127,6 +128,11 @@ app.post('/login', async (req, res) => {
         const user = userResult.rows[0];
         if (user) {
             if (user.otp_secret) {
+                // Se o OTP for necessário, retornar isso na resposta
+                if (!otp) {
+                    return res.json({ otpRequired: true });
+                }
+
                 const verified = speakeasy.totp.verify({
                     secret: user.otp_secret,
                     encoding: 'base32',
@@ -151,8 +157,8 @@ app.post('/login', async (req, res) => {
 });
 
 // Rota para gerar o QR code para OTP
-app.post('/generate-otp', async (req, res) => {
-    const { userId } = req.body;
+app.post('/generate-otp/:userId', async (req, res) => {
+    const { userId } = req.params;
     const secret = speakeasy.generateSecret({ length: 20 });
 
     await pool.query(
@@ -160,38 +166,77 @@ app.post('/generate-otp', async (req, res) => {
         [secret.base32, userId]
     );
 
-    QRCode.toDataURL(secret.otpauth_url, (err, data_url) => {
+    const otpAuthUrl = `otpauth://totp/FinancialManager:${userId}?secret=${secret.base32}&issuer=FinancialManager`;
+
+    QRCode.toDataURL(otpAuthUrl, (err, data_url) => {
         if (err) {
             console.error('Erro ao gerar QR code:', err.message);
             return res.status(500).send('Erro ao gerar QR code');
         }
-        res.json({ data_url });
+        res.json({ otpSecret: secret.base32, data_url });
     });
 });
 
 // Rota para verificar o OTP
-app.post('/verify-otp', (req, res) => {
-    const { userId, token } = req.body;
+app.post('/verify-otp', async (req, res) => {
+    const { email, otp } = req.body;
 
-    pool.query('SELECT otp_secret FROM usuario WHERE id = $1', [userId], (err, result) => {
-        if (err) {
-            console.error('Erro ao verificar OTP:', err.message);
-            return res.status(500).send('Erro ao verificar OTP');
+    try {
+        const userResult = await pool.query(
+            'SELECT * FROM usuario WHERE email = $1',
+            [email]
+        );
+
+        const user = userResult.rows[0];
+
+        if (!user || !user.otp_secret) {
+            return res.status(400).send('Usuário ou segredo OTP não encontrado');
         }
 
-        const secret = result.rows[0].otp_secret;
         const verified = speakeasy.totp.verify({
-            secret: secret,
+            secret: user.otp_secret,
             encoding: 'base32',
-            token: token
+            token: otp
         });
 
         if (verified) {
-            res.send('Código OTP verificado com sucesso');
+            res.json({ success: true, user });
         } else {
             res.status(401).send('Código OTP inválido');
         }
-    });
+    } catch (err) {
+        console.error('Erro ao verificar OTP:', err.message);
+        res.status(500).send('Erro no servidor');
+    }
+});
+
+// Rota para remover o OTP
+app.post('/remove-otp', async (req, res) => {
+    const { userId } = req.body;
+
+    try {
+        await pool.query('UPDATE usuario SET otp_secret = NULL WHERE id = $1', [userId]);
+        res.send('OTP removido com sucesso');
+    } catch (err) {
+        console.error('Erro ao remover OTP:', err.message);
+        res.status(500).send('Erro ao remover OTP');
+    }
+});
+
+app.get('/get-otp-secret/:userId', async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const result = await pool.query('SELECT otp_secret FROM usuario WHERE id = $1', [userId]);
+        if (result.rows.length === 0) {
+            return res.status(404).send('Usuário não encontrado');
+        }
+
+        res.json({ otpSecret: result.rows[0].otp_secret });
+    } catch (err) {
+        console.error('Erro ao buscar OTP secret:', err.message);
+        res.status(500).send('Erro no servidor');
+    }
 });
 
 // Rotas para categorias

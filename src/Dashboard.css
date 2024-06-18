@@ -34,7 +34,6 @@
   margin-top: 20px;
 }
 
-
 .add-button svg {
   position: absolute;
   width: 100%;
@@ -152,8 +151,6 @@
   top: 30px; 
 }
 
-
-
 .saldo-total {
   font-size: 23px;
   display: flex;
@@ -240,7 +237,6 @@
   color: white;
 }
 
-
 .transaction-item {
   display: flex;
   justify-content: space-between;
@@ -277,4 +273,8 @@
   color: white;
 }
 
-
+.otp-qr-code {
+  width: 256px;
+  height: 256px;
+  margin: 20px;
+}

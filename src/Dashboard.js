@@ -66,13 +66,24 @@ const Dashboard = () => {
     }
   }, [user.id]);
 
+  const fetchOtpSecret = useCallback(async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/get-otp-secret/${user.id}`);
+      const result = await response.json();
+      setOtpSecret(result.otpSecret);
+    } catch (err) {
+      console.error('Erro ao buscar OTP secret:', err);
+    }
+  }, [user.id]);
+
   useEffect(() => {
     if (user.id) {
       fetchCategorias();
       fetchTransacoes();
       fetchSaldoMensal();
+      fetchOtpSecret();
     }
-  }, [user.id, fetchCategorias, fetchTransacoes, fetchSaldoMensal]);
+  }, [user.id, fetchCategorias, fetchTransacoes, fetchSaldoMensal, fetchOtpSecret]);
 
   const handleAddCategory = (novaCategoria) => {
     setCategorias([...categorias, novaCategoria]);
@@ -126,7 +137,13 @@ const Dashboard = () => {
 
   const handleGenerateOTP = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/generate-otp/${user.id}`);
+      const response = await fetch(`http://localhost:5000/generate-otp/${user.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: user.id })
+      });
       const result = await response.json();
       setOtpSecret(result.otpSecret);
     } catch (err) {
@@ -136,17 +153,22 @@ const Dashboard = () => {
 
   const handleRemoveOTP = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/remove-otp/${user.id}`, {
+      const response = await fetch(`http://localhost:5000/remove-otp`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: user.id })
       });
       if (response.ok) {
         setOtpSecret('');
-        alert('Autenticador OTP removido com sucesso.');
+        alert('OTP removido com sucesso.');
       } else {
-        alert('Erro ao remover o autenticador OTP.');
+        alert('Erro ao remover OTP.');
       }
     } catch (err) {
       console.error('Erro ao remover OTP:', err);
+      alert('Erro ao remover OTP.');
     }
   };
 
@@ -182,13 +204,11 @@ const Dashboard = () => {
           <button onClick={logout} className="logout-button">Sair</button>
           <button onClick={handleGenerateOTP} className="generate-otp-button">Gerar OTP</button>
           {otpSecret && (
-            <>
-              <div className="otp-qr-code">
-                <QRCode value={`otpauth://totp/FinancialManager:${user.email}?secret=${otpSecret}&issuer=FinancialManager`} />
-                <p>Escaneie o QR Code com seu aplicativo autenticador.</p>
-              </div>
+            <div className="otp-qr-code">
+              <QRCode value={`otpauth://totp/FinancialManager:${user.email}?secret=${otpSecret}&issuer=FinancialManager`} />
+              <p>Escaneie o QR Code com seu aplicativo autenticador.</p>
               <button onClick={handleRemoveOTP} className="remove-otp-button">Remover OTP</button>
-            </>
+            </div>
           )}
         </div>
       </Modal>

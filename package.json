@@ -21,6 +21,7 @@
     "react-toastify": "^10.0.5",
     "recharts": "^2.12.7",
     "speakeasy": "^2.0.0",
+    "tinyurl": "^1.1.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
