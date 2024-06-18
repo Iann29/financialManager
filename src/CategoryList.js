@@ -3,6 +3,11 @@ import dinheiroIcon from './icon/dinheiro.png';
 import belezaIcon from './icon/beleza.png';
 import transporteIcon from './icon/transporte.png';
 import comidaiIcon from './icon/comidai.png';
+import hobbyIcon from './icon/hobby.png';
+import roupasIcon from './icon/roupas.png';
+import socialIcon from './icon/social.png';
+import bonusIcon from './icon/bonus.png';
+import investimentoIcon from './icon/investimento.png';
 import './CategoryList.css'; 
 
 const iconMap = {
@@ -10,6 +15,11 @@ const iconMap = {
   'beleza.png': belezaIcon,
   'transporte.png': transporteIcon,
   'comidai.png': comidaiIcon,
+  'hobby.png': hobbyIcon,
+  'roupas.png': roupasIcon,
+  'social.png': socialIcon,
+  'bonus.png': bonusIcon,
+  'investimento.png': investimentoIcon,
 };
 
 const getCategoryClass = (categoriaNome) => {
@@ -50,7 +60,6 @@ const CategoryList = ({ categorias, onRemove }) => {
   };
 
   const getCategoriaIcone = (icon) => {
-    console.log('Icon name:', icon); // Adicionado log para verificar o valor do ícone
     return iconMap[icon] || './icon/default.png';
   };
 

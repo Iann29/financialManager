@@ -8,7 +8,7 @@ app.use(express.json());
 
 const pool = new Pool({
     user: 'financial_user',
-    host: 'localhost',
+    host: '192.168.18.244',
     database: 'financialManager',
     password: 'admin123',
     port: 5432,
@@ -63,13 +63,13 @@ const addDefaultCategoriesForUser = async (userId) => {
     const defaultCategories = [
         { nome: 'Transporte', tipo: 'Despesa', icon: 'transporte.png' },
         { nome: 'Comida', tipo: 'Despesa', icon: 'comidai.png' },
-        { nome: 'Hobby', tipo: 'Despesa', icon: 'gamepad.png' },
-        { nome: 'Roupas', tipo: 'Despesa', icon: 'tshirt.png' },
+        { nome: 'Hobby', tipo: 'Despesa', icon: 'hobby.png' },
+        { nome: 'Roupas', tipo: 'Despesa', icon: 'roupas.png' },
         { nome: 'Beleza', tipo: 'Despesa', icon: 'beleza.png' },
-        { nome: 'Social', tipo: 'Despesa', icon: 'users.png' },
+        { nome: 'Social', tipo: 'Despesa', icon: 'social.png' },
         { nome: 'Salário', tipo: 'Receita', icon: 'dinheiro.png' },
-        { nome: 'Bônus', tipo: 'Receita', icon: 'gift.png' },
-        { nome: 'Investimentos', tipo: 'Receita', icon: 'chart-line.png' },
+        { nome: 'Bônus', tipo: 'Receita', icon: 'bonus.png' },
+        { nome: 'Investimentos', tipo: 'Receita', icon: 'investimento.png' },
     ];
 
     try {
