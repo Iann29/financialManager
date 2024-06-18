@@ -75,6 +75,10 @@ const TransactionList = ({ transacoes, categorias, onRemove }) => {
     handleModalClose();
   };
 
+  const isReceita = (categoriaNome) => {
+    return categoriaNome === 'Salário' || categoriaNome === 'Bônus';
+  };
+
   return (
     <div className="custom-transaction-list">
       <ul>
@@ -95,7 +99,9 @@ const TransactionList = ({ transacoes, categorias, onRemove }) => {
                 <span className="custom-transaction-description">{transacao.descricao}</span>
               </div>
               <div className="custom-transaction-value-container">
-                <span className="custom-transaction-value">{transacao.valor}</span>
+                <span className={`custom-transaction-value ${isReceita(getCategoriaNome(transacao.categoria_id)) ? 'custom-transaction-value-receita' : ''}`}>
+                  {transacao.valor}
+                </span>
               </div>
             </div>
           </li>

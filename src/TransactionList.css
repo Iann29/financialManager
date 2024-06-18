@@ -1,100 +1,104 @@
 .custom-transaction-list ul {
-    list-style-type: none;
-    padding: 10;
-  }
-  
-  .custom-transaction-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 0;
-    cursor: pointer;
-  }
-  
-  .custom-transaction-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .custom-transaction-icon img {
-    max-width: 100%;
-    max-height: 65%;
-    border-radius: 0%;
-  }
-  
-  .custom-transaction-transporte { background-color: #FF6F61; }
-  .custom-transaction-comida { background-color: #6B5B95; }
-  .custom-transaction-hobby { background-color: #88B04B; }
-  .custom-transaction-roupas { background-color: #FFA500; }
-  .custom-transaction-beleza { background-color: #FFB6C1; }
-  .custom-transaction-social { background-color: #20B2AA; }
-  .custom-transaction-salario { background-color: #FFD700; }
-  .custom-transaction-bonus { background-color: #8A2BE2; }
-  .custom-transaction-investimentos { background-color: #00CED1; }
-  .custom-transaction-default { background-color: #ccc; }
-  
-  .custom-transaction-info {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    justify-content: space-between;
-  }
-  
-  .custom-transaction-details {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .custom-transaction-category {
-    color: white;
-    font-family: Helvetica;
-    margin-bottom: 5px;
-  }
-  
-  .custom-transaction-description {
-    color: #787878;
-    font-family: Helvetica;
-    margin: 0;
-  }
-  
-  .custom-transaction-value-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .custom-transaction-value {
-    color: white;
-    font-family: Helvetica;
-    margin-right: 10px;
-    min-width: 80px;
-    text-align: right;
-  }
-  
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
-  .modal-content button {
-    margin: 10px;
-  }
-  
+  list-style-type: none;
+  padding: 0;
+}
+
+.custom-transaction-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+.custom-transaction-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: 25px; /* Adiciona espaço à esquerda dos ícones */
+}
+
+.custom-transaction-icon img {
+  max-width: 100%;
+  max-height: 65%;
+  border-radius: 0%;
+}
+
+.custom-transaction-transporte { background-color: #FF6F61; }
+.custom-transaction-comida { background-color: #6B5B95; }
+.custom-transaction-hobby { background-color: #88B04B; }
+.custom-transaction-roupas { background-color: #FFA500; }
+.custom-transaction-beleza { background-color: #FFB6C1; }
+.custom-transaction-social { background-color: #20B2AA; }
+.custom-transaction-salario { background-color: #FFD700; }
+.custom-transaction-bonus { background-color: #8A2BE2; }
+.custom-transaction-investimentos { background-color: #00CED1; }
+.custom-transaction-default { background-color: #ccc; }
+
+.custom-transaction-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.custom-transaction-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-transaction-category {
+  color: white;
+  font-family: Helvetica;
+  margin-bottom: 5px;
+}
+
+.custom-transaction-description {
+  color: #787878;
+  font-family: Helvetica;
+  margin: 0;
+}
+
+.custom-transaction-value-container {
+  display: flex;
+  align-items: center;
+}
+
+.custom-transaction-value {
+  color: white;
+  font-family: Helvetica;
+  margin-right: 30px;
+  min-width: 80px;
+  text-align: right;
+}
+
+.custom-transaction-value-receita {
+  color: #00FF00; /* Verde */
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modal-content button {
+  margin: 10px;
+}
